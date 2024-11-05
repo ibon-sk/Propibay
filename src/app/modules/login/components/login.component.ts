@@ -5,12 +5,11 @@ import { LoginController } from '../controllers/login.controller';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  loginError: string | null = null;
-  loginSuccess: string | null = null;
+  showLoginError = false;
 
   constructor(private loginController: LoginController) {
     this.loginForm = new FormGroup({
@@ -23,13 +22,10 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.loginController.login(email, password).subscribe({
-        next: (response: string) => {
-          this.loginSuccess = response;
-          this.loginError = null;
-        },
-        error: (error: any) => {
-          this.loginError = error.message;
-          this.loginSuccess = null;
+        next: (response: number) => {
+          response === 0 ? window.location.href = '/home' : 
+          response === 1 ? window.location.href = '/admin' : 
+          this.showLoginError = true;
         }
       });
     }
@@ -39,7 +35,7 @@ export class LoginComponent {
     window.location.href = 'https://accounts.google.com/signin';
   }
 
-  onCreateAccount() {
-    // navegar a la ruta de creación de cuenta
+  onClickCreateAccount() {
+    window.location.href = '/create-account';
   }
 }

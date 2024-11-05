@@ -9,7 +9,7 @@ export class LoginController {
 
   constructor(private loginService: LoginService) { }
 
-  login(email: string, password: string): Observable<string> {
+  login(email: string, password: string): Observable<number> {
     return this.loginService.login(email, password);
   }
 }

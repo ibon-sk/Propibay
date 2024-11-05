@@ -1,10 +1,31 @@
-// Variables para colores y tamaños
-$primary-color: #3498db;
-$secondary-color: #2ecc71;
-$error-color: #e74c3c;
+@import '../../../../styles.scss';
+
 $input-padding: 10px;
 $button-padding: 10px 15px;
 $border-radius: 5px;
+
+body, html {
+  height: 100%; 
+  margin: 0;
+}
+
+.page {
+  display: flexbox;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  color: $Propibay-primary;
+}
+
+img {
+  width: 180px;
+  height: 180px;
+}
 
 // Estilos del formulario
 form {
@@ -22,7 +43,7 @@ form {
       font-weight: bold;
       display: block;
       margin-bottom: 5px;
-      color: $primary-color;
+      color: $Propibay-primary;
     }
 
     input {
@@ -34,53 +55,63 @@ form {
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 
       &:focus {
-        border-color: $primary-color;
+        border-color: $Propibay-primary;
         outline: none;
-        box-shadow: 0 0 5px rgba($primary-color, 0.5);
+        box-shadow: 0 0 5px rgba($Propibay-primary, 0.5);
       }
 
       &.ng-invalid.ng-touched {
-        border-color: $error-color;
+        border-color: $Propibay-primary;
       }
     }
 
     // Estilos para los mensajes de error
     small {
-      color: $error-color;
+      color: $Propibay-warn;
       font-size: 0.9rem;
     }
   }
 
+  h1 {
+    text-align: center;
+    color: $Propibay-primary;
+  }
+
   // Estilos de los botones
   button {
+    width: 100%;
     padding: $button-padding;
     border: none;
     border-radius: $border-radius;
     cursor: pointer;
     font-size: 1rem;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
 
     &:not(:last-child) {
       margin-right: 10px;
     }
 
     &.btn-submit {
-      background-color: $primary-color;
+      background-color: $Propibay-primary;
       color: white;
 
       &:disabled {
-        background-color: lighten($primary-color, 20%);
         cursor: not-allowed;
       }
     }
 
     &.btn-google {
-      background-color: white;
-      color: #333;
+      background-color: $Propibay-google;
+      color: white;
       border: 1px solid #ddd;
 
       img {
+        width: 24px;
+        height: 24px;
         vertical-align: middle;
-        margin-right: 5px;
+        margin-right: 8px;
       }
 
       &:hover {
@@ -89,8 +120,8 @@ form {
     }
 
     &.btn-create {
-      background-color: $secondary-color;
-      color: white;
+      background-color: $Propibay-secondary;
+      color: $Propibay-primary;
     }
 
     &:hover {

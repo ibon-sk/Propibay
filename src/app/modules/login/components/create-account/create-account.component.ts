@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { passwordValidator } from '../../../shared/validators/password-validator';
+
 
 @Component({
     selector: 'app-create-account',
     templateUrl: './create-account.component.html',
-    styleUrls: ['./create-account.component.css']
+    styleUrls: ['./create-account.component.scss']
   })
 export class CreateAccountComponent {
     createAccountForm: FormGroup;
@@ -14,17 +16,16 @@ export class CreateAccountComponent {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]]
+        password: ['', passwordValidator()]
       });
     }
   
     onSubmit() {
+      this.createAccountForm.markAllAsTouched();
       if (this.createAccountForm.valid) {
         // Aquí puedes manejar el envío del formulario, por ejemplo, enviando los datos a un servidor
         console.log('Formulario enviado', this.createAccountForm.value);
-      } else {
-        // Mostrar mensajes de error
-        console.log('Formulario no válido');
+        window.location.href = '/login';
       }
     }
 }

@@ -6,28 +6,25 @@ import { Observable, of, throwError } from 'rxjs';
 })
 export class LoginService {
 
+  mockUser = {
+    email: '123456@unizar.es',
+    password: 'Contraseña1'
+  };
+
+  mockAdmin = {
+    email: '000001@unizar.es',
+    password: 'Contraseña2'
+  };
+
   constructor() { }
 
-  // Método mockeado de login
-  login(email: string, password: string): Observable<string> {
-    // Validar que el email sea válido
-    if (!this.isValidEmail(email)) {
-      return throwError(() => new Error('Email no es válido'));
+  login(email: string, password: string): Observable<number> {
+    if (email === this.mockUser.email && password === this.mockUser.password) {
+      return of(0);
+    } else if (email === this.mockAdmin.email && password === this.mockAdmin.password) {
+      return of(1);
+    } else {
+      return of(-1);
     }
-
-    // Validar que la contraseña tenga entre 6 y 12 caracteres
-    if (password.length < 6 || password.length > 12) {
-      return throwError(() => new Error('La contraseña debe tener entre 6 y 12 caracteres'));
-    }
-
-    // Si las validaciones son correctas, retornar un Observable de éxito
-    return of('Login exitoso');
-  }
-
-  // Método privado para validar si el email tiene un formato válido
-  private isValidEmail(email: string): boolean {
-    // Expresión regular básica para validar un email
-    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    return emailRegex.test(email);
   }
 }
