@@ -1,4 +1,5 @@
 import { Input, Output, EventEmitter, Component } from "@angular/core";
+import { Offer } from "../../models/offer";
 
 @Component({
   selector: 'app-offer-card',
@@ -6,8 +7,10 @@ import { Input, Output, EventEmitter, Component } from "@angular/core";
   styleUrls: ['./offer-card.component.scss']
 })
 export class OfferCardComponent {
-  @Input() offer: any;
-  @Output() offerSelected = new EventEmitter<any>();
+  @Input() offer!: Offer;
+  @Output() offerSelected = new EventEmitter<Offer>();
+
+
 
   selectOffer() {
     this.offerSelected.emit(this.offer);

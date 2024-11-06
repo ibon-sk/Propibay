@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordValidator } from '../../../shared/validators/password-validator';
 import { Router } from '@angular/router';
+import { LoginController } from '../../controllers/login.controller';
+import { User } from '../../../shared/models/user';
 
 
 @Component({
@@ -12,9 +14,9 @@ import { Router } from '@angular/router';
 export class CreateAccountComponent {
     createAccountForm: FormGroup;
 
-    constructor(private fb: FormBuilder, private router: Router) {
+    constructor(private fb: FormBuilder, private router: Router, private controller: LoginController) {
       this.createAccountForm = this.fb.group({
-        firstName: ['', Validators.required],
+        name: ['', Validators.required],
         lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', passwordValidator()]
@@ -28,9 +30,15 @@ export class CreateAccountComponent {
     onSubmit() {
       this.createAccountForm.markAllAsTouched();
       if (this.createAccountForm.valid) {
-        // Aquí puedes manejar el envío del formulario, por ejemplo, enviando los datos a un servidor
-        console.log('Formulario enviado', this.createAccountForm.value);
-        this.router.navigate(['/home']);
+        const user: User = {
+          name: this.createAccountForm.value.name,
+          lastName: this.createAccountForm.value.lastName,
+          email: this.createAccountForm.value.email,
+          password: this.createAccountForm.value.password
+        }
+        this.controller.createAccount(user).subscribe(() => {
+          this.router.navigate(['/login']);
+        });
       }
     }
 }

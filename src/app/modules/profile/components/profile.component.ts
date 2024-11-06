@@ -55,12 +55,7 @@ export class ProfileComponent {
 
   logout() {
     this.router.navigate(['/login']);
-  }
-
-  goBack() {
-    this.router.navigate(['/home']);
-  }
-    
+  } 
 
   deleteAccount() {
     //TODO: Agregar lógica para eliminar la cuenta

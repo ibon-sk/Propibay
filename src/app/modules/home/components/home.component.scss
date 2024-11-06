@@ -1,0 +1,64 @@
+@import '../../../../styles.scss';
+
+$border-radius: 5px;
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    h1 {
+        color: $Propibay-primary;
+        margin-left: 10px;
+    }
+
+    .icon {
+        font-size: 24px;
+        vertical-align: middle;
+      }
+
+    .search-container {
+        display: flex;
+        align-items: center;
+    
+        .search-input {
+          padding: 5px 10px;
+          font-size: 1rem;
+          border-radius: $border-radius;
+          border: 1px solid #ccc;
+          margin-left: 100px;
+          width: 200px;
+    
+          &:focus {
+            border-color: $Propibay-primary;
+            outline: none;
+          }
+        }
+    }
+
+    .search-button {
+        margin-left: 5px;
+        background: $Propibay-secondary;
+        color: $Propibay-primary;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        border-radius: $border-radius;
+    
+        .icon {
+          font-size: 24px;
+          vertical-align: middle;
+        }
+  
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+}
+
+.offers-container {
+    display: block;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }

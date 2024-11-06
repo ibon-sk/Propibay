@@ -1,0 +1,65 @@
+@import '../../../../../styles.scss';
+
+.offer-card {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+  width: 100%; 
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+
+  .offer-image {
+    width: 180px; 
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .offer-details {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+
+    .offer-title {
+      color: $Propibay-primary;
+      font-size: 1.5rem; 
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+
+    .offer-description {
+      font-size: 1rem; 
+      color: $Propibay-secondary;
+      margin-bottom: 5px;
+    }
+
+    .offer-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 1rem;
+      color: $Propibay-secondary;
+
+      .offer-rooms,
+      .offer-baths {
+        color: $Propibay-secondary;
+      }
+    }
+
+    .offer-price {
+      margin-top: 10px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: $Propibay-green; 
+    }
+  }
+}
+
+.offer-type {
+  color: $Propibay-green;
+  padding: 5px 10px;
+}
+
+

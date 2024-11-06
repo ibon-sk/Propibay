@@ -2,13 +2,17 @@
 
 nav {
   background-color: $Propibay-secondary;
-  display: block;
+  display: flex;
+  width: auto;
+  height: 100%;
+  overflow-x: hidden;
 
   .menu-container {
     display: flex;
-    justify-content: space-between; 
+    justify-content: center; 
     align-items: center; 
-    padding: 10px; 
+    width: 100%;
+    position: relative;
 
     img {
       width: 75px;
@@ -20,27 +24,28 @@ nav {
     .icon {
       cursor: pointer; 
       color: $Propibay-primary; 
-      display: flex;
       align-items: center; 
-      justify-content: center; 
-      
-      &.left {
-        margin-right: auto;
-      }
-
-      &.right {
-        margin-left: auto; 
-                
-        &:not(:first-child) { 
-          margin-left: 2px; 
-        }
-      }
+      justify-content: center;
 
       mat-icon {
-        font-size: 24px;
+        font-size: 24px;  
         line-height: 1;
         vertical-align: middle;
       }
+    }
+
+    .left {
+      position: absolute;
+      left: 10px; 
+    }
+
+    .icons-container {
+      right: 10px;  
+      display: flex;
+      flex-direction: row;
+      align-items: center; 
+      gap: 10px;
+      margin-right: 20px;
     }
   }
 }

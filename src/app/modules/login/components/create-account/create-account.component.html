@@ -8,9 +8,9 @@
 <form [formGroup]="createAccountForm" (ngSubmit)="onSubmit()">
     <div>
         <label for="first-name">Nombre</label>
-        <input type="text" id="first-name" formControlName="firstName" required>
-        <div *ngIf="createAccountForm.get('firstName')?.invalid && createAccountForm.touched">
-            <small *ngIf="createAccountForm.get('firstName')?.errors?.['required']">Campo requerido</small>
+        <input type="text" id="first-name" formControlName="name" required>
+        <div *ngIf="createAccountForm.get('name')?.invalid && createAccountForm.touched">
+            <small *ngIf="createAccountForm.get('name')?.errors?.['required']">Campo requerido</small>
         </div>
     </div>
     <div>

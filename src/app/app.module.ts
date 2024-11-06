@@ -16,6 +16,10 @@ import { EditOfferComponent } from './modules/offer/components/edit-offer/edit-o
 import { OfferComponent } from './modules/offer/components/offer.component';
 import { MenuComponent } from './modules/shared/components/menu/menu.component';
 import { ProfileComponent } from './modules/profile/components/profile.component';
+import { SharedModule } from './modules/shared/shared.module';
+import { HomeController } from './modules/home/controllers/home.controller';
+import { HomeService } from './modules/home/services/home.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,9 +41,14 @@ import { ProfileComponent } from './modules/profile/components/profile.component
     AppRoutingModule,
     MatIconModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [    
+    HomeController,
+    HomeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

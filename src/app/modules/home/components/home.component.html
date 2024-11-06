@@ -1,8 +1,13 @@
-<h1>Home Component</h1>
-
-<div>
-    <p>
-        En esta pantalla, los usuarios podrán visuailizar y buscar ofertas
-        de otros usuarios y visualizar el menu con enlaces a otras partes del sistema
-    </p>
+<div class="header">
+    <mat-icon class="icon">favorite_border</mat-icon>
+    <h1>Los favoritos de nuestros usuarios</h1>
+    <div class="search-container">
+        <input matInput placeholder="Buscar oferta" [(ngModel)]="searchQuery" class="search-input" (keydown.enter)="searchOffers()" />
+        <button class="search-button" (click)="searchOffers()">
+          <mat-icon class="icon">search</mat-icon>
+        </button>
+    </div>
+</div>
+<div class="offers-container">
+    <app-offer-card *ngFor="let offer of filteredOffers" [offer]="offer"></app-offer-card>
 </div>

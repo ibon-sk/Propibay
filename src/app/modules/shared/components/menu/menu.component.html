@@ -4,14 +4,16 @@
       <mat-icon (click)="toggleDropdown()">menu</mat-icon>
     </span>
     <img src="favicon.ico" alt="Propibay Logo" (click)="goHome()">
-    <span class="icon right">
-      <mat-icon (click)="goCreateOffer()">add_circle</mat-icon>
-    </span>
-    <span class="icon right">
-      <mat-icon (click)="goChat()">chat</mat-icon>
-    </span>
-    <span class="icon right">
-      <mat-icon (click)="goProfile()">account_circle</mat-icon>
-    </span>
+    <div class="icons-container">
+      <span class="icon right">
+        <mat-icon (click)="goCreateOffer()">add_circle</mat-icon>
+      </span>
+      <span class="icon right">
+        <mat-icon (click)="goChat()">chat</mat-icon>
+      </span>
+      <span class="icon right">
+        <mat-icon (click)="goProfile()">account_circle</mat-icon>
+      </span>
+    </div>
   </div>
 </nav>

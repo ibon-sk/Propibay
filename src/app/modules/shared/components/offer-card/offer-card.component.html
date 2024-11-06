@@ -1,5 +1,16 @@
-<div class="card">
-    <p>name</p>
-    <p>price</p>
-    <p>description</p>
-</div>
+<div class="offer-card">
+    <img [src]="offer.image || 'assets/images/default-offer.png'" alt="Imagen del inmueble" class="offer-image" />
+  
+    <div class="offer-details">
+      <h3 class="offer-title">{{ offer.title }}</h3>
+      <p class="offer-description">{{ offer.description }}</p>
+  
+      <div class="offer-meta">
+        <span class="offer-rooms">{{ offer.rooms }} {{ offer.rooms === 1 ? 'habitación' : 'habitaciones' }}</span>
+        <span class="offer-baths">{{ offer.baths }} {{ offer.baths === 1 ? 'baño' : 'baños' }}</span>
+      </div>
+  
+      <div class="offer-price">{{ offer.price | currency: 'EUR' }}</div>
+    </div>
+    <p class="offer-type">{{ offer.type === 1 ? 'Casa' : offer.type === 2 ? 'Apartamento' : 'Solar'}} en {{ offer.adType === 1 ? 'Venta' : 'Alquiler' }}</p>
+  </div>
