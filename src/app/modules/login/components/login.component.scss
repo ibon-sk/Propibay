@@ -61,7 +61,7 @@ form {
       }
 
       &.ng-invalid.ng-touched {
-        border-color: $Propibay-primary;
+        border-color: $Propibay-warn;
       }
     }
 
@@ -96,6 +96,10 @@ form {
     &.btn-submit {
       background-color: $Propibay-primary;
       color: white;
+
+      &:hover {
+        opacity: 0.9;
+      }
 
       &:disabled {
         cursor: not-allowed;

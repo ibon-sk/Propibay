@@ -1,8 +1,45 @@
-<h1>Profile Component</h1>
+<div class="profile-container">
 
-<div>
-    <p>
-        En esta pantalla, los usuarios podrán visuailizar y modificar sus datos personales,
-        cerrar sesión o eliminar su cuenta.
-    </p>
-</div>
+    <div class="profile-image">
+        <label for="file-input">
+            <img [src]="profileImageUrl" alt="Profile image" (click)="fileInput.click()" />
+        </label>
+      <input 
+        type="file"   
+        style="display: none;"
+        accept="image/*" 
+        (change)="onImageSelected($event)"  
+        hidden #fileInput 
+        />
+    </div>
+  
+    <div class="username-container">
+        <div class="username-input">
+            <input
+            type="text"
+            [(ngModel)]="username"
+            [readonly]="!isEditing"
+            class="username"
+            [ngClass]="{'editing': isEditing}"
+            (blur)="validateUsername()"
+        />
+        <button *ngIf="!isEditing" class="edit-button" (click)="toggleEdit()">
+            <mat-icon class="icon">edit</mat-icon>
+        </button>
+        <button *ngIf="isEditing" class="save-button" (click)="saveUsername()">
+            <mat-icon class="icon">check</mat-icon>
+        </button>
+        <button class="logout-button" (click)="logout()">
+            <mat-icon class="icon">logout</mat-icon>
+        </button>
+        </div>
+        <small *ngIf="isUsernameEmpty">Debe completar el nombre de usuario</small>
+    </div>
+  
+    <div class="actions">
+      <button (click)="manageApartments()">Mis Apartamentos</button>
+      <button (click)="viewFavoritesHistory()">Favoritos</button>
+      <button class="delete" (click)="deleteAccount()">Eliminar cuenta</button>
+    </div>
+  </div>
+  

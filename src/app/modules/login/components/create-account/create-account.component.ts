@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordValidator } from '../../../shared/validators/password-validator';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { passwordValidator } from '../../../shared/validators/password-validator
 export class CreateAccountComponent {
     createAccountForm: FormGroup;
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private router: Router) {
       this.createAccountForm = this.fb.group({
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
@@ -19,13 +20,17 @@ export class CreateAccountComponent {
         password: ['', passwordValidator()]
       });
     }
+
+    goBack(): void {
+      this.router.navigate(['/login']);
+    }
   
     onSubmit() {
       this.createAccountForm.markAllAsTouched();
       if (this.createAccountForm.valid) {
         // Aquí puedes manejar el envío del formulario, por ejemplo, enviando los datos a un servidor
         console.log('Formulario enviado', this.createAccountForm.value);
-        window.location.href = '/login';
+        this.router.navigate(['/home']);
       }
     }
 }

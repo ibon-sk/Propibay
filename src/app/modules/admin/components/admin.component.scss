@@ -1,0 +1,10 @@
+@import '../../../../styles.scss';
+
+.page {
+    display: flex;
+    flex-direction: column; 
+  }
+  
+  h1 {
+    color: $Propibay-primary;
+  }

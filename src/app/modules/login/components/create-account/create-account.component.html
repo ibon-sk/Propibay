@@ -1,4 +1,9 @@
-<h1>Crear cuenta nueva</h1>
+<div style="position: relative; display: flex; align-items: center; padding-top: 20px; padding-bottom: 30px;">
+    <button mat-icon-button (click)="goBack()" style="position: absolute; left: 0;">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 style="margin: 0 auto;">Crear cuenta nueva</h1>
+</div>
 
 <form [formGroup]="createAccountForm" (ngSubmit)="onSubmit()">
     <div>

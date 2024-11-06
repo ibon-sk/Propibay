@@ -1,0 +1,46 @@
+@import '../../../../../styles.scss';
+
+nav {
+  background-color: $Propibay-secondary;
+  display: block;
+
+  .menu-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px; 
+
+    img {
+      width: 75px;
+      cursor: pointer; 
+      vertical-align: middle;
+      margin: 0 auto;
+    }
+
+    .icon {
+      cursor: pointer; 
+      color: $Propibay-primary; 
+      display: flex;
+      align-items: center; 
+      justify-content: center; 
+      
+      &.left {
+        margin-right: auto;
+      }
+
+      &.right {
+        margin-left: auto; 
+                
+        &:not(:first-child) { 
+          margin-left: 2px; 
+        }
+      }
+
+      mat-icon {
+        font-size: 24px;
+        line-height: 1;
+        vertical-align: middle;
+      }
+    }
+  }
+}

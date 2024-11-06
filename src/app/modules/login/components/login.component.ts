@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginController } from '../controllers/login.controller';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   showLoginError = false;
 
-  constructor(private loginController: LoginController) {
+  constructor(private loginController: LoginController, private router: Router) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
@@ -36,6 +37,6 @@ export class LoginComponent {
   }
 
   onClickCreateAccount() {
-    window.location.href = '/create-account';
+    this.router.navigate(['/create-account']);
   }
 }
