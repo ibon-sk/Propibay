@@ -1,8 +1,70 @@
-<h1>Edit offer Component</h1>
-
-<div>
-    <p>
-        En esta pantalla, los usuarios podrán visuailizar los datos de la oferta con id
-        concreto y comprar o negociar por la propiedad en oferta
-    </p>
-</div>
+<div class="create-offer-container">
+    <div class="form-card">
+        <h2>Datos de tu anuncio</h2>
+        <form [formGroup]="offerForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="title">Título</label>
+                <input type="text" id="title" formControlName="title" required>
+                <div *ngIf="offerForm.get('title')?.invalid && offerForm.touched">
+                    <small *ngIf="offerForm.get('title')?.errors?.['required']">Campo requerido</small>
+                </div>
+            </div>
+            <div>
+                <label for="description">Descripción</label>
+                <input type="text" id="description" formControlName="description" required>
+            </div>
+            <div>
+                <label for="type">Tipo de inmueble</label>
+                <select id="type" formControlName="propertyType" required>
+                    <option value="" disabled selected>Selecciona</option>
+                    <option value="house">Casa</option>
+                    <option value="apartment">Apartamento</option>
+                    <option value="office">Oficina</option>
+                </select>
+                <div *ngIf="offerForm.get('type')?.invalid && offerForm.touched">
+                  <small *ngIf="offerForm.get('type')?.errors?.['required']">Campo requerido</small>
+                </div>
+            </div>
+            <div>
+                <label for="listing-type">Tipo de anuncio</label>
+                <select id="listing-type" formControlName="listingType" required>
+                    <option value="" disabled selected>Selecciona</option>
+                    <option value="house">Casa</option>
+                    <option value="apartment">Apartamento</option>
+                     <option value="office">Oficina</option>
+                </select>
+                <div *ngIf="offerForm.get('listingType')?.invalid && offerForm.touched">
+                  <small *ngIf="offerForm.get('listingType')?.errors?.['required']">Campo requerido</small>
+                </div>
+            </div>
+            <div>
+                <label for="rooms">Habitaciones</label>
+                <input type="number" id="rooms" formControlName="rooms" required>
+            </div>
+            <div>
+                <label for="bathrooms">Baños</label>
+                <input type="number" id="bathrooms" formControlName="bathrooms" required>
+            </div>
+            <div>
+                <label for="price">Precio</label>
+                <input type="text" id="price" formControlName="price" required>
+                <div *ngIf="offerForm.get('price')?.invalid && offerForm.touched">
+                    <small *ngIf="offerForm.get('price')?.errors?.['required']">Campo requerido</small>
+                </div>
+            </div>
+            <div class="button-container">
+                <button type="submit">Guardar cambios</button>
+                <button type="delete">Eliminar oferta</button>
+            </div>
+        </form>
+    </div>
+  
+    <div class="map-card">
+      <h2>Ubicación del inmueble</h2>
+      <input matInput placeholder="Buscar ubicación" (input)="searchLocation($event)" />
+      <button class="search-button" (click)="onSearchLocation()">
+        <mat-icon class="icon">search</mat-icon>
+      </button>
+    </div>
+  </div>
+  

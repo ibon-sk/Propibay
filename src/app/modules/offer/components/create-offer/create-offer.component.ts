@@ -1,29 +1,41 @@
-import { Component } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: "app-create-offer",
-  templateUrl: "./create-offer.component.html",
-  styleUrls: ["./create-offer.component.scss"],
+  selector: 'app-create-offer',
+  templateUrl: './create-offer.component.html',
+  styleUrls: ['./create-offer.component.scss']
 })
-export class CreateOfferComponent {
-  createOfferForm: FormGroup;
+export class CreateOfferComponent implements OnInit {
+  offerForm: FormGroup = this.fb.group({
+    title: ['', [Validators.required]],
+    description: [''],
+    propertyType: ['', [Validators.required]],
+    listingType: ['', [Validators.required]],
+    rooms: [0, [Validators.required]],
+    bathrooms: [0, [Validators.required]],
+    price: [0, [Validators.required]]
+  });
+  propertyTypes: string[] = ['Casa', 'Apartamento', 'Condominio'];
+  listingTypes: string[] = ['Venta', 'Alquiler'];
 
-  constructor(private fb: FormBuilder) {
-    this.createOfferForm = this.fb.group({
-      title: ["", Validators.required],
-      description: ["", Validators.required],
-      price: ["", Validators.required],
-      image: ["", Validators.required],
-    });
-  }
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void { }
 
   onSubmit() {
-    this.createOfferForm.markAllAsTouched();
-    if (this.createOfferForm.valid) {
-      // Aquí puedes manejar el envío del formulario, por ejemplo, enviando los datos a un servidor
-      console.log("Formulario enviado", this.createOfferForm.value);
-      window.location.href = "/home";
+    if (this.offerForm.valid) {
+      console.log(this.offerForm.value);
     }
+  }
+
+  onSearchLocation() {
+    console.log("Search location");
+  }
+
+  searchLocation(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const value = inputElement.value;
+    // Procesa el valor como necesites
   }
 }
