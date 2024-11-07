@@ -14,11 +14,11 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Promise<any> {
-    return this.http.post(this.apiRoot + this.apiUrl + '/login', {email: email, contrasenya: password}).toPromise();
+    return this.http.post(`${this.apiRoot}${this.apiUrl}/login`, {email: email, contrasenya: password}).toPromise();
   }
 
   adminLogin(email: string, password: string): Promise<any> {
-    return this.http.post(this.apiRoot + this.adminApiUrl + '/login', {email: email, contrasenya: password}).toPromise();
+    return this.http.post(`${this.apiRoot}${this.adminApiUrl}/login`, {email: email, contrasenya: password}).toPromise();
   }
 
   createAccount(user: User): Promise<any> {

@@ -23,13 +23,13 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-      this.loginController.login(email, password).then((token: any) => {
-          localStorage.setItem('authToken', token);
+      this.loginController.login(email, password).then((response: any) => {
+          localStorage.setItem('authToken', response.token);
           this.userService.setEmail(email);
           this.router.navigate(['/home']);
         }).catch(() => {
-          this.loginController.adminLogin(email, password).then((token: any) => {
-            localStorage.setItem('adminToken', token);
+          this.loginController.adminLogin(email, password).then((response: any) => {
+            localStorage.setItem('adminToken', response.token);
             this.userService.setEmail(email);
             this.router.navigate(['/admin']);
           }).catch(() => {
