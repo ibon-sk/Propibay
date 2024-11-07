@@ -2,11 +2,11 @@ import { Component } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
-  selector: "app-edit-offer",
-  templateUrl: "./edit-offer.component.html",
-  styleUrls: ["./edit-offer.component.scss"],
+  selector: "app-edit-property",
+  templateUrl: "./edit-property.component.html",
+  styleUrls: ["./edit-property.component.scss"],
 })
-export class EditOfferComponent {
+export class EditPropertyComponent {
   offerForm: FormGroup = this.fb.group({
     title: ['', [Validators.required]],
     description: [''],

@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OfferCardComponent } from './components/offer-card/offer-card.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { PropertyCardComponent } from './components/property-card/property-card.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
-    OfferCardComponent,
+    PropertyCardComponent,
     MenuComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   exports: [
-    OfferCardComponent,
+    PropertyCardComponent,
     MenuComponent
   ]
 })

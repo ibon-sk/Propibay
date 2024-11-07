@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HomeService } from '../services/home.service';
-import { Offer } from '../../shared/models/offer';
+import { Property } from '../../shared/models/property';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class HomeController {
 
   constructor(private readonly service: HomeService) {}
 
-  getProperties(): Observable<Offer[]> {
+  getProperties(): Observable<Property[]> {
     return this.service.getProperties();
   }
 }

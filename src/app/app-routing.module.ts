@@ -4,9 +4,9 @@ import { LoginComponent } from './modules/login/components/login.component';
 import { CreateAccountComponent } from './modules/login/components/create-account/create-account.component';
 import { AdminComponent } from './modules/admin/components/admin.component';
 import { HomeComponent } from './modules/home/components/home.component';
-import { OfferComponent } from './modules/offer/components/offer.component';
-import { CreateOfferComponent } from './modules/offer/components/create-offer/create-offer.component';
-import { EditOfferComponent } from './modules/offer/components/edit-offer/edit-offer.component';
+import { PropertyComponent } from './modules/property/components/property.component';
+import { CreatePropertyComponent } from './modules/property/components/create-property/create-property.component';
+import { EditPropertyComponent } from './modules/property/components/edit-property/edit-property.component';
 import { ProfileComponent } from './modules/profile/components/profile.component';
 import { AuthGuard } from './guards/auth.guard';
 
@@ -15,10 +15,10 @@ const routes: Routes = [
   { path: 'create-account', component: CreateAccountComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'offer/:id', component: OfferComponent, canActivate: [AuthGuard] },
+  { path: 'offer/:id', component: PropertyComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'create-offer', component: CreateOfferComponent, canActivate: [AuthGuard] },
-  { path: 'edit-offer', component: EditOfferComponent, canActivate: [AuthGuard] },
+  { path: 'create-offer', component: CreatePropertyComponent, canActivate: [AuthGuard] },
+  { path: 'edit-offer', component: EditPropertyComponent, canActivate: [AuthGuard] },
   // Redirige a /login por defecto o si no coincide ninguna ruta
   { path: '', redirectTo: '/login', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/login' } 

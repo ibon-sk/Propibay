@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-create-offer',
-  templateUrl: './create-offer.component.html',
-  styleUrls: ['./create-offer.component.scss']
+  selector: 'app-create-property',
+  templateUrl: './create-property.component.html',
+  styleUrls: ['./create-property.component.scss']
 })
-export class CreateOfferComponent implements OnInit {
+export class CreatePropertyComponent implements OnInit {
   offerForm: FormGroup = this.fb.group({
     title: ['', [Validators.required]],
     description: [''],

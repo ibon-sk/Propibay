@@ -11,9 +11,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './modules/home/components/home.component';
 import { AdminComponent } from './modules/admin/components/admin.component';
-import { CreateOfferComponent } from './modules/offer/components/create-offer/create-offer.component';
-import { EditOfferComponent } from './modules/offer/components/edit-offer/edit-offer.component';
-import { OfferComponent } from './modules/offer/components/offer.component';
+import { CreatePropertyComponent } from './modules/property/components/create-property/create-property.component';
+import { EditPropertyComponent } from './modules/property/components/edit-property/edit-property.component';
+import { PropertyComponent } from './modules/property/components/property.component';
 import { ProfileComponent } from './modules/profile/components/profile.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { HomeController } from './modules/home/controllers/home.controller';
@@ -27,9 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
     CreateAccountComponent,
     HomeComponent,
     AdminComponent,
-    OfferComponent,
-    CreateOfferComponent,
-    EditOfferComponent,
+    PropertyComponent,
+    CreatePropertyComponent,
+    EditPropertyComponent,
     ProfileComponent
   ],
   imports: [

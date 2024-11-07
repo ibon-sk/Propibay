@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeController } from '../controllers/home.controller';
-import { Offer } from '../../shared/models/offer';
+import { Property } from '../../shared/models/property';
 
 @Component({
   selector: 'app-home',
@@ -8,24 +8,24 @@ import { Offer } from '../../shared/models/offer';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  filteredOffers: Offer[] = [];  
-  offers: Offer[] = [];
+  filteredProperties: Property[] = [];  
+  properties: Property[] = [];
   searchQuery = '';  
 
   constructor(private controller: HomeController) {}
 
   ngOnInit(): void {
-    this.controller.getProperties().subscribe((offers: any[]) => {
-      this.offers = offers;
-      this.filteredOffers = offers;
+    this.controller.getProperties().subscribe((properties: any[]) => {
+      this.properties = properties;
+      this.filteredProperties = properties;
     });
   }
 
   searchOffers(): void {
-    this.filteredOffers = this.offers.filter(offer =>
+    this.filteredProperties = this.properties.filter(offer =>
       offer.title === null || offer.title?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
       offer.description === null ||offer.description?.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
-    console.log(this.filteredOffers, this.searchQuery);
+    console.log(this.filteredProperties, this.searchQuery);
   }
 }
