@@ -36,7 +36,7 @@ export class CreateAccountComponent {
           email: this.createAccountForm.value.email,
           password: this.createAccountForm.value.password
         }
-        this.controller.createAccount(user).subscribe(() => {
+        this.controller.createAccount(user).then(() => {
           this.router.navigate(['/login']);
         });
       }

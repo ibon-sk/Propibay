@@ -10,15 +10,15 @@ export class LoginController {
 
   constructor(private service: LoginService) { }
 
-  createAccount(user: User): Observable<any> {
+  createAccount(user: User) {
     return this.service.createAccount(user);
   }
 
-  login(email: string, password: string): Observable<any> {
+  login(email: string, password: string) {
     return this.service.login(email, password);
   }
 
-  adminLogin(email: string, password: string): Observable<any> {
+  adminLogin(email: string, password: string) {
     return this.service.adminLogin(email, password);
   }
 }

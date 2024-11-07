@@ -16,9 +16,11 @@ export class HomeComponent implements OnInit {
   constructor(private controller: HomeController, private router: Router) {}
 
   ngOnInit(): void {
-    this.controller.getProperties().subscribe((properties: any[]) => {
+    this.controller.getProperties().then((properties: any[]) => {
       this.properties = properties;
       this.filteredProperties = properties;
+    }).catch(() => {
+      console.log('Error getting properties');
     });
   }
 

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
 import { User } from '../../shared/models/user';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,20 +7,21 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
 
+  apiRoot: string = 'http://localhost:3001';
   apiUrl: string = '/clientes';
   adminApiUrl: string = '/administradores';
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string): Observable<any> {
-    return of('authToken'); //this.http.post(this.apiUrl + '/login', {email: email, contrasenya: password});
+  login(email: string, password: string): Promise<any> {
+    return this.http.post(this.apiRoot + this.apiUrl + '/login', {email: email, contrasenya: password}).toPromise();
   }
 
-  adminLogin(email: string, password: string): Observable<any> {
-    return of('adminToken'); //this.http.post(this.adminApiUrl + '/login', {email: email, contrasenya: password});
+  adminLogin(email: string, password: string): Promise<any> {
+    return this.http.post(this.apiRoot + this.adminApiUrl + '/login', {email: email, contrasenya: password}).toPromise();
   }
 
-  createAccount(user: User): Observable<any> {
+  createAccount(user: User): Promise<any> {
     const params = {
       nombre: user.name,
       apellidos: user.lastName,
@@ -29,6 +29,6 @@ export class LoginService {
       email: user.email
     }
 
-    return this.http.post(this.apiUrl, params);
+    return this.http.post(this.apiRoot + this.apiUrl, params).toPromise();
   }
 }

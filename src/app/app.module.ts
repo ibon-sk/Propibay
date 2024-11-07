@@ -16,12 +16,13 @@ import { EditPropertyComponent } from './modules/property/components/edit-proper
 import { PropertyComponent } from './modules/property/components/property.component';
 import { ProfileComponent } from './modules/profile/components/profile.component';
 import { SharedModule } from './modules/shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MyFavouritesComponent } from './modules/profile/components/my-favourites/my-favourites.component';
 import { MyPropertiesComponent } from './modules/profile/components/my-properties/my-properties.component';
 import { ChatComponent } from './modules/chat/components/chat.component';
 import { AdminPropertiesComponent } from './modules/admin/components/admin-properties/admin-properties.component';
 import { AdminUsersComponent } from './modules/admin/components/admin-users/admin-users.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,9 @@ import { AdminUsersComponent } from './modules/admin/components/admin-users/admi
     SharedModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

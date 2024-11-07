@@ -8,11 +8,12 @@ import { Property } from '../../shared/models/property';
 })
 export class HomeService {
 
+    apiRoot: string = 'http://localhost:3001';
     apiUrl: string = '/propiedades';
     
     constructor(private http: HttpClient) { }
 
-    getProperties(): Observable<any> {
-        return this.http.get<Property>(this.apiUrl);
+    getProperties(): Promise<any> {
+        return this.http.get<Property>(this.apiRoot + this.apiUrl).toPromise();
     }
 }
