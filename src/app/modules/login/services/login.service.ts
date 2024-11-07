@@ -1,24 +1,21 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../shared/models/user';
 import { HttpClient } from '@angular/common/http';
+import { API } from '../../shared/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  apiRoot: string = 'http://localhost:3001';
-  apiUrl: string = '/clientes';
-  adminApiUrl: string = '/administradores';
-
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Promise<any> {
-    return this.http.post(`${this.apiRoot}${this.apiUrl}/login`, {email: email, contrasenya: password}).toPromise();
+    return this.http.post(`${API.ROOT}${API.CLIENTS}/login`, {email: email, contrasenya: password}).toPromise();
   }
 
   adminLogin(email: string, password: string): Promise<any> {
-    return this.http.post(`${this.apiRoot}${this.adminApiUrl}/login`, {email: email, contrasenya: password}).toPromise();
+    return this.http.post(`${API.ROOT}${API.ADMIN}/login`, {email: email, contrasenya: password}).toPromise();
   }
 
   createAccount(user: User): Promise<any> {
@@ -29,6 +26,6 @@ export class LoginService {
       email: user.email
     }
 
-    return this.http.post(this.apiRoot + this.apiUrl, params).toPromise();
+    return this.http.post(`${API.ROOT}${API.CLIENTS}`, params).toPromise();
   }
 }

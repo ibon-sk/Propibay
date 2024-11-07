@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from '../../shared/models/user';
-import { Observable, of } from 'rxjs';
+import { API } from '../../shared/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-    apiUrl: string = '/clientes';
-
     constructor(private http: HttpClient) { }
 
-    getProfile(email: string): Observable<any> {
+    getProfile(email: string): Promise<any> {
         const params: HttpParams = new HttpParams().set('email', email);
 
-        return this.http.get(this.apiUrl, { params });
+        return this.http.get(`${API.ROOT}${API.CLIENTS}`, { params }).toPromise();
     }
 
-    updateProfile(user: User): Observable<any> {
+    updateProfile(user: User): Promise<any> {
         if (user.email !== undefined) { 
             const params: HttpParams = new HttpParams().set('email', user.email);
             const body = {
@@ -26,9 +24,9 @@ export class ProfileService {
                 apellidos: user.lastName,
                 contrasenya: user.password
             };
-            return this.http.put(this.apiUrl, body, { params });
+            return this.http.put(`${API.ROOT}${API.CLIENTS}`, body, { params }).toPromise();
         } else {
-            return of(-1);
+            return Promise.reject('No email provided');
         }
     }
 
