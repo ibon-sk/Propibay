@@ -14,7 +14,6 @@ import { AdminComponent } from './modules/admin/components/admin.component';
 import { CreateOfferComponent } from './modules/offer/components/create-offer/create-offer.component';
 import { EditOfferComponent } from './modules/offer/components/edit-offer/edit-offer.component';
 import { OfferComponent } from './modules/offer/components/offer.component';
-import { MenuComponent } from './modules/shared/components/menu/menu.component';
 import { ProfileComponent } from './modules/profile/components/profile.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { HomeController } from './modules/home/controllers/home.controller';
@@ -31,7 +30,6 @@ import { HttpClientModule } from '@angular/common/http';
     OfferComponent,
     CreateOfferComponent,
     EditOfferComponent,
-    MenuComponent,
     ProfileComponent
   ],
   imports: [

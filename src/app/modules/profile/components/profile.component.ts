@@ -1,21 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProfileController } from '../controllers/profile.controller';
+import { User } from '../../shared/models/user';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   profileImageUrl: string = 'assets/images/unknown.png'; 
-  username: string = 'Lorenzo Sierra';
+  user: User | undefined;
+  email: string = '';
+  fullName: string = 'Desconocido';
   isEditing: boolean = false;
   isUsernameEmpty: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private controller: ProfileController, private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.email = this.userService.getEmail();
+    this.controller.getProfile(this.email).subscribe((response: any) => {
+      this.user = response;
+      this.profileImageUrl = response.profileImageUrl;
+      this.fullName = response.name + ' ' + response.lastName;
+    });
+  }
 
   validateUsername() {
-    this.isUsernameEmpty = !this.username.trim();
+    this.isUsernameEmpty = !this.fullName.trim();
   }
 
   toggleEdit() {
@@ -25,7 +39,6 @@ export class ProfileComponent {
   saveUsername() {
     this.validateUsername();
     if (!this.isUsernameEmpty) {
-      //TODO: Agregar la lógica para guardar el nombre
       this.isEditing = false;
     }
   }
@@ -36,29 +49,26 @@ export class ProfileComponent {
       const reader = new FileReader();
       reader.onload = () => {
         this.profileImageUrl = reader.result as string;
-        //TODO: Agregar lógica para subir la imagen al servidor
-        console.log('Imagen de perfil actualizada');
       };
       reader.readAsDataURL(file);
     }
   }
 
   manageApartments() {
-    //TODO: Agregar lógica para gestionar apartamentos
     console.log('Gestionar Apartamentos');
   }
 
   viewFavoritesHistory() {
-    //TODO: Agregar lógica para gestionar favoritos
     console.log('Historial de Favoritos');
   }
 
   logout() {
+    localStorage.removeItem('authToken');
     this.router.navigate(['/login']);
   } 
 
   deleteAccount() {
-    //TODO: Agregar lógica para eliminar la cuenta
+    localStorage.removeItem('authToken');
     this.router.navigate(['/login']);
   }
 }

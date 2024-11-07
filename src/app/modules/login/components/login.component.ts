@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginController } from '../controllers/login.controller';
 import { Router } from '@angular/router';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   showLoginError = false;
 
-  constructor(private loginController: LoginController, private router: Router) {
+  constructor(private loginController: LoginController, private router: Router, private userService: UserService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required])
@@ -23,17 +24,17 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.loginController.login(email, password).subscribe({
-        next: (response: number) => {
-          response === 0 ? window.location.href = '/home' : 
-          response === 1 ? window.location.href = '/admin' : 
-          this.showLoginError = true;
+        next: (token: any) => {
+          localStorage.setItem('authToken', token);
+          this.userService.setEmail(email);
+          this.router.navigate(['/home']);
         }
       });
     }
   }
 
   onGoogleLogin() {
-    window.location.href = 'https://accounts.google.com/signin';
+    //window.location.href = 'https://accounts.google.com/signin';
   }
 
   onClickCreateAccount() {

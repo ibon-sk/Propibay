@@ -8,16 +8,17 @@ import { OfferComponent } from './modules/offer/components/offer.component';
 import { CreateOfferComponent } from './modules/offer/components/create-offer/create-offer.component';
 import { EditOfferComponent } from './modules/offer/components/edit-offer/edit-offer.component';
 import { ProfileComponent } from './modules/profile/components/profile.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },            
   { path: 'create-account', component: CreateAccountComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'offer/:id', component: OfferComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'create-offer', component: CreateOfferComponent },
-  { path: 'edit-offer', component: EditOfferComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'offer/:id', component: OfferComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'create-offer', component: CreateOfferComponent, canActivate: [AuthGuard] },
+  { path: 'edit-offer', component: EditOfferComponent, canActivate: [AuthGuard] },
   // Redirige a /login por defecto o si no coincide ninguna ruta
   { path: '', redirectTo: '/login', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/login' } 
