@@ -55,11 +55,11 @@ export class ProfileComponent implements OnInit {
   }
 
   manageApartments() {
-    console.log('Gestionar Apartamentos');
+    this.router.navigate(['/profile/my-properties']);
   }
 
   viewFavoritesHistory() {
-    console.log('Historial de Favoritos');
+    this.router.navigate(['/profile/my-favourites']);
   }
 
   logout() {

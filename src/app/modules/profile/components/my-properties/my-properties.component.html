@@ -1,0 +1,17 @@
+<div style="position: relative; display: flex; align-items: center; padding-top: 20px; padding-bottom: 30px;">
+    <button mat-icon-button (click)="goBack()" style="position: absolute; left: 0;">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+</div>
+<div class="header">
+    <h1>Mis apartamentos</h1>
+    <div class="search-container">
+        <input matInput placeholder="Buscar oferta" [(ngModel)]="searchQuery" class="search-input" (keydown.enter)="searchOffers()" />
+        <button class="search-button" (click)="searchOffers()">
+          <mat-icon class="icon">search</mat-icon>
+        </button>
+    </div>
+</div>
+<div class="offers-container">
+    <app-property-card *ngFor="let property of filteredProperties" [property]="property"></app-property-card>
+</div>

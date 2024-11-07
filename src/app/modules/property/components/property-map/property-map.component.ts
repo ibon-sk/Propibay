@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Route } from "@angular/router";
+import { Router } from "@angular/router";
 import { PropertyController } from "../../controllers/property.controller";
 
 @Component({
@@ -11,5 +11,5 @@ export class PropertyMapComponent {
   lat = 51.678418;
   lng = 7.809007;
 
-  constructor(private route: Route, private controller: PropertyController) {}
+  constructor(private router: Router, private controller: PropertyController) {}
 }

@@ -16,9 +16,10 @@ import { EditPropertyComponent } from './modules/property/components/edit-proper
 import { PropertyComponent } from './modules/property/components/property.component';
 import { ProfileComponent } from './modules/profile/components/profile.component';
 import { SharedModule } from './modules/shared/shared.module';
-import { HomeController } from './modules/home/controllers/home.controller';
-import { HomeService } from './modules/home/services/home.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MyFavouritesComponent } from './modules/profile/components/my-favourites/my-favourites.component';
+import { MyPropertiesComponent } from './modules/profile/components/my-properties/my-properties.component';
+import { ChatComponent } from './modules/chat/components/chat.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,10 @@ import { HttpClientModule } from '@angular/common/http';
     AdminComponent,
     PropertyComponent,
     CreatePropertyComponent,
+    MyPropertiesComponent,
+    MyFavouritesComponent,
     EditPropertyComponent,
+    ChatComponent,
     ProfileComponent
   ],
   imports: [
@@ -43,10 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     HttpClientModule
   ],
-  providers: [    
-    HomeController,
-    HomeService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,10 +22,9 @@ export class HomeComponent implements OnInit {
   }
 
   searchOffers(): void {
-    this.filteredProperties = this.properties.filter(offer =>
-      offer.title === null || offer.title?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-      offer.description === null ||offer.description?.toLowerCase().includes(this.searchQuery.toLowerCase())
+    this.filteredProperties = this.properties.filter(property =>
+      property.title === null || property.title?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      property.description === null ||property.description?.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
-    console.log(this.filteredProperties, this.searchQuery);
   }
 }

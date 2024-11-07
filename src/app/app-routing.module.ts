@@ -10,9 +10,9 @@ import { EditPropertyComponent } from './modules/property/components/edit-proper
 import { ProfileComponent } from './modules/profile/components/profile.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PropertyMapComponent } from './modules/property/components/property-map/property-map.component';
-import { PropertyOfferChatComponent } from './modules/property/components/property-offer-chat/property-offer-chat.component';
 import { MyPropertiesComponent } from './modules/profile/components/my-properties/my-properties.component';
 import { MyFavouritesComponent } from './modules/profile/components/my-favourites/my-favourites.component';
+import { ChatComponent } from './modules/chat/components/chat.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },            
@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'create-property', component: CreatePropertyComponent, canActivate: [AuthGuard] },
   { path: 'edit-property', component: EditPropertyComponent, canActivate: [AuthGuard] },
   { path: 'property/map', component: PropertyMapComponent, canActivate: [AuthGuard] },
-  { path: 'property/chat', component: PropertyOfferChatComponent, canActivate: [AuthGuard] },
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
   // Redirige a /login por defecto o si no coincide ninguna ruta
   { path: '', redirectTo: '/login', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/login' } 

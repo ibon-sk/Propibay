@@ -1,6 +1,6 @@
 @import '../../../../../styles.scss';
 
-.offer-card {
+.property-card {
   display: flex;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -10,45 +10,45 @@
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 
-  .offer-image {
+  .property-image {
     width: 180px; 
     height: 100%;
     object-fit: cover;
   }
 
-  .offer-details {
+  .property-details {
     padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
 
-    .offer-title {
+    .property-title {
       color: $Propibay-primary;
       font-size: 1.5rem; 
       font-weight: bold;
       padding-bottom: 10px;
     }
 
-    .offer-description {
+    .property-description {
       font-size: 1rem; 
       color: $Propibay-secondary;
       margin-bottom: 5px;
     }
 
-    .offer-meta {
+    .property-meta {
       display: flex;
       gap: 15px;
       font-size: 1rem;
       color: $Propibay-secondary;
 
-      .offer-rooms,
-      .offer-baths {
+      .property-rooms,
+      .property-baths {
         color: $Propibay-secondary;
       }
     }
 
-    .offer-price {
+    .property-price {
       margin-top: 10px;
       font-size: 1.3rem;
       font-weight: bold;
@@ -57,7 +57,7 @@
   }
 }
 
-.offer-type {
+.property-type {
   color: $Propibay-green;
   padding: 5px 10px;
 }

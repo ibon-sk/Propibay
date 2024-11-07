@@ -1,42 +1,35 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Property } from "src/app/modules/shared/models/property";
 import { ProfileController } from "../../controllers/profile.controller";
-import { Route } from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-my-favourites",
   templateUrl: "./my-favourites.component.html",
   styleUrls: ["./my-favourites.component.scss"],
 })
-export class MyFavouritesComponent {
-  favourites: Property[] = [
-    {
-      id: 1,
-      image: undefined,
-      title: "Casa en la playa",
-      description: "Casa de 3 habitaciones frente al mar",
-      type: 1,
-      offerType: 2,
-      rooms: 3,
-      baths: 2,
-      price: 100000,
-    },
-    {
-      id: 2,
-      image: undefined,
-      title: "Apartamento en la ciudad",
-      description: "Apartamento de 2 habitaciones en el centro",
-      type: 1,
-      offerType: 1,
-      rooms: 2,
-      baths: 1,
-      price: 800,
-    },
-  ];
+export class MyFavouritesComponent implements OnInit {
+  favourites: Property[] = [];
+  filteredFavourites: Property[] = [];
+  searchQuery = '';
 
-  constructor(private route: Route, private controller: ProfileController) {}
+  constructor(private router: Router, private controller: ProfileController) {}
+
+  ngOnInit(): void {
+  }
 
   addFavourite(newFavourite: Property) {
       this.favourites.push(newFavourite);
+  }
+
+  goBack() {
+    this.router.navigate(['/profile']);
+  }
+
+  searchOffers(): void {
+    this.filteredFavourites = this.favourites.filter(property =>
+      property.title === null || property.title?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      property.description === null ||property.description?.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
   }
 }
