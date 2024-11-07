@@ -1,4 +1,21 @@
-<div class="page">
-    <h1>Cuenta de administrador</h1>
-    <p>Esta es la página de administrador, aquí podrás gestionar todos los usuarios y ofertas de la aplicación</p>
-</div>
+<div class="admin-container">
+
+    <div class="admin-image">
+        <label for="file-input">
+            <img [src]="'/assets/images/unknown.png'" alt="Admin image"/>
+        </label>
+    </div>
+  
+    <div class="username-container">
+        <div class="username-input">
+            <h2>Panel de administrador</h2>
+        </div>
+    </div>
+  
+    <div class="actions">
+      <button (click)="manageUsers()">Gestionar usuarios</button>
+      <button (click)="manageProperties()">Gestionar apartamentos</button>
+      <button class="delete" (click)="logout()">Cerrar sesión</button>
+    </div>
+  </div>
+  

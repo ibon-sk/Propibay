@@ -7,4 +7,16 @@ import { AdminService } from "../services/admin.service";
 export class AdminController {
 
     constructor(private service: AdminService) {}
+
+    getAllUsers() {
+        return this.service.getAllUsers();
+    }
+
+    blockUser(email: string) {
+        return this.service.blockUser(email);
+    }
+
+    getAdmin(email: string) {
+        return this.service.getAdmin(email);
+    }
 }

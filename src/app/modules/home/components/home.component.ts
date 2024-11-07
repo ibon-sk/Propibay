@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeController } from '../controllers/home.controller';
 import { Property } from '../../shared/models/property';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,13 +13,17 @@ export class HomeComponent implements OnInit {
   properties: Property[] = [];
   searchQuery = '';  
 
-  constructor(private controller: HomeController) {}
+  constructor(private controller: HomeController, private router: Router) {}
 
   ngOnInit(): void {
     this.controller.getProperties().subscribe((properties: any[]) => {
       this.properties = properties;
       this.filteredProperties = properties;
     });
+  }
+
+  goPropertyPage(propertyId: number | undefined): void {
+    this.router.navigate([`/property/${propertyId}`]);
   }
 
   searchOffers(): void {

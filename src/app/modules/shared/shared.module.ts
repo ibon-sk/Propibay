@@ -6,10 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { UserCardComponent } from './components/user-card/user-card.component';
 
 @NgModule({
   declarations: [
     PropertyCardComponent,
+    UserCardComponent,
     MenuComponent,
     DeleteModalComponent
   ],
@@ -21,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   exports: [
     PropertyCardComponent,
+    UserCardComponent,
     MenuComponent
   ]
 })

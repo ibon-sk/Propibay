@@ -13,4 +13,8 @@ export class HomeController {
   getProperties(): Observable<Property[]> {
     return this.service.getProperties();
   }
+
+  getProperty(id: number): Observable<Property> {
+    return this.service.getProperty(id);
+  }
 }

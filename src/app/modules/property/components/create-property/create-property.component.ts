@@ -12,12 +12,13 @@ export class CreatePropertyComponent implements OnInit {
     description: [''],
     propertyType: ['', [Validators.required]],
     listingType: ['', [Validators.required]],
-    rooms: [0, [Validators.required]],
-    bathrooms: [0, [Validators.required]],
-    price: [0, [Validators.required]]
+    extension: [0, [Validators.required, Validators.min(100)]],
+    rooms: [1, [Validators.required, Validators.min(1)]],
+    bathrooms: [1, [Validators.required, Validators.min(1)]],
+    price: [0, [Validators.required, Validators.min(1000)]]
   });
-  propertyTypes: string[] = ['Casa', 'Apartamento', 'Condominio'];
-  listingTypes: string[] = ['Venta', 'Alquiler'];
+  propertyTypes: string[] = [];
+  listingTypes: string[] = [];
 
   constructor(private fb: FormBuilder) {}
 

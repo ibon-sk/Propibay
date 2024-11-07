@@ -13,20 +13,26 @@ import { PropertyMapComponent } from './modules/property/components/property-map
 import { MyPropertiesComponent } from './modules/profile/components/my-properties/my-properties.component';
 import { MyFavouritesComponent } from './modules/profile/components/my-favourites/my-favourites.component';
 import { ChatComponent } from './modules/chat/components/chat.component';
+import { AdminUsersComponent } from './modules/admin/components/admin-users/admin-users.component';
+import { AdminPropertiesComponent } from './modules/admin/components/admin-properties/admin-properties.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },            
   { path: 'create-account', component: CreateAccountComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'property', component: PropertyComponent, canActivate: [AuthGuard] },
+  { path: 'property/:id', component: PropertyComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'profile/my-properties', component: MyPropertiesComponent, canActivate: [AuthGuard] },
   { path: 'profile/my-favourites', component: MyFavouritesComponent, canActivate: [AuthGuard] },
   { path: 'create-property', component: CreatePropertyComponent, canActivate: [AuthGuard] },
   { path: 'edit-property', component: EditPropertyComponent, canActivate: [AuthGuard] },
-  { path: 'property/map', component: PropertyMapComponent, canActivate: [AuthGuard] },
+  { path: 'property/:id/map', component: PropertyMapComponent, canActivate: [AuthGuard] },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
+  // Rutas protegidas para Administración
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
+  { path: 'admin/users', component: AdminUsersComponent, canActivate: [AdminGuard] },
+  { path: 'admin/properties', component: AdminPropertiesComponent, canActivate: [AdminGuard] },
   // Redirige a /login por defecto o si no coincide ninguna ruta
   { path: '', redirectTo: '/login', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/login' } 

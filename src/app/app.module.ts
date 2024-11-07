@@ -20,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyFavouritesComponent } from './modules/profile/components/my-favourites/my-favourites.component';
 import { MyPropertiesComponent } from './modules/profile/components/my-properties/my-properties.component';
 import { ChatComponent } from './modules/chat/components/chat.component';
+import { AdminPropertiesComponent } from './modules/admin/components/admin-properties/admin-properties.component';
+import { AdminUsersComponent } from './modules/admin/components/admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { ChatComponent } from './modules/chat/components/chat.component';
     CreateAccountComponent,
     HomeComponent,
     AdminComponent,
+    AdminPropertiesComponent,
+    AdminUsersComponent,
     PropertyComponent,
     CreatePropertyComponent,
     MyPropertiesComponent,

@@ -23,7 +23,7 @@
   
     <div>
       <button type="submit" class="btn-submit" [disabled]="loginForm.invalid">Iniciar Sesión</button>
-      <button type="button" class="btn-google" (click)="onGoogleLogin()">
+      <button type="button" class="btn-google" (click)="onGoogleLogin()" disabled>
         <img src="assets/images/google.svg" alt="Google Icon"> Iniciar Sesión con Google
       </button>
       <button type="button" class="btn-create" (click)="onClickCreateAccount()">Crear Cuenta</button>

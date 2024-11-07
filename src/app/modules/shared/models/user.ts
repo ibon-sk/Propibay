@@ -1,7 +1,7 @@
 
 export class User {
-    name: string | undefined;
-    lastName: string | undefined;
-    email: string | undefined;
-    password: string | undefined;
+    name?: string;
+    lastName?: string;
+    email?: string;
+    password?: string;
 }

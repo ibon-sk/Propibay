@@ -4,15 +4,14 @@
     </button>
 </div>
 <div class="header">
-    <mat-icon class="icon">favorite</mat-icon>
-    <h1>Mis favoritos</h1>
+    <h1>Gestionar usuarios</h1>
     <div class="search-container">
-        <input matInput placeholder="Buscar oferta" [(ngModel)]="searchQuery" class="search-input" (keydown.enter)="searchOffers()" />
-        <button class="search-button" (click)="searchOffers()">
+        <input matInput placeholder="Buscar usuario" [(ngModel)]="searchQuery" class="search-input" (keydown)="searchUsers()" />
+        <button class="search-button" (click)="searchUsers()">
           <mat-icon class="icon">search</mat-icon>
         </button>
     </div>
 </div>
 <div class="offers-container">
-    <app-property-card *ngFor="let property of filteredFavourites" [property]="property"></app-property-card>
+    <app-user-card *ngFor="let user of filteredUsers" [user]="user" (click)="delete(user.email)"></app-user-card>
 </div>

@@ -1,5 +1,5 @@
 <div class="header">
-    <mat-icon class="icon">favorite_border</mat-icon>
+    <mat-icon class="icon">favorite</mat-icon>
     <h1>Los favoritos de nuestros usuarios</h1>
     <div class="search-container">
         <input matInput placeholder="Buscar oferta" [(ngModel)]="searchQuery" class="search-input" (keydown.enter)="searchOffers()" />
@@ -9,5 +9,5 @@
     </div>
 </div>
 <div class="offers-container">
-    <app-property-card *ngFor="let property of filteredProperties" [property]="property"></app-property-card>
+    <app-property-card *ngFor="let property of filteredProperties" [property]="property" (click)="goPropertyPage(property.id)"></app-property-card>
 </div>

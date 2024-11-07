@@ -1,0 +1,39 @@
+@import '../../../../../styles.scss';
+
+.user-card {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+  width: 100%; 
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+
+  .user-image {
+    width: 120px; 
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .user-details {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+
+    .user-email {
+      color: $Propibay-primary;
+      font-size: 1.5rem; 
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+
+    .user-name {
+      font-size: 1rem; 
+      color: $Propibay-secondary;
+      margin-bottom: 5px;
+    }
+  }
+}

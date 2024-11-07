@@ -10,8 +10,6 @@ export class PropertyCardComponent {
   @Input() property!: Property;
   @Output() propertySelected = new EventEmitter<Property>();
 
-
-
   selectOffer() {
     this.propertySelected.emit(this.property);
   }

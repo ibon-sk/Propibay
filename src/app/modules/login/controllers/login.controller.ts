@@ -17,4 +17,8 @@ export class LoginController {
   login(email: string, password: string): Observable<any> {
     return this.service.login(email, password);
   }
+
+  adminLogin(email: string, password: string): Observable<any> {
+    return this.service.adminLogin(email, password);
+  }
 }

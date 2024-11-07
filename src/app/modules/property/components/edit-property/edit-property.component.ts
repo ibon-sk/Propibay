@@ -12,6 +12,7 @@ export class EditPropertyComponent {
     description: [''],
     propertyType: ['', [Validators.required]],
     listingType: ['', [Validators.required]],
+    extension: [0, [Validators.required, Validators.min(100)]],
     rooms: [1, [Validators.required, Validators.min(1)]],
     bathrooms: [1, [Validators.required, Validators.min(1)]],
     price: [0, [Validators.required, Validators.min(1000)]]

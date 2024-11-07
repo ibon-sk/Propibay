@@ -29,7 +29,13 @@ export class MenuComponent {
     }
 
     goHome() {
-      this.router.navigate(['/home']);
+      this.currentRoute = this.router.url;
+      this.currentRoute?.includes('/admin') ? this.router.navigate(['/admin']) : this.router.navigate(['/home']);
+    }
+
+    shouldShowButtons(): boolean {
+      this.currentRoute = this.router.url;
+      return !this.currentRoute?.includes('/admin');
     }
 
     shouldShowMenu(): boolean {

@@ -11,7 +11,17 @@ import { Property } from '../../shared/models/property';
 })
 export class PropertyComponent implements OnInit {
   
-  property: Property | undefined;
+  property: Property = {
+    id: 2,
+    image: undefined,
+    title: 'Casa en alquiler',
+    description: 'Casa en alquiler en la colonia Condesa',
+    type: 2,
+    offerType: 2,
+    rooms: 4,
+    baths: 3,
+    price: 15000,
+  };
 
   constructor(
     private router: Router, 

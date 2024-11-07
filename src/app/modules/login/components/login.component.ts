@@ -25,16 +25,16 @@ export class LoginComponent {
       const { email, password } = this.loginForm.value;
       this.loginController.login(email, password).subscribe({
         next: (token: any) => {
-          localStorage.setItem('authToken', token);
+          localStorage.setItem('adminToken', token);
           this.userService.setEmail(email);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/admin']);
         }
       });
     }
   }
 
   onGoogleLogin() {
-    //window.location.href = 'https://accounts.google.com/signin';
+    window.location.href = 'https://accounts.google.com/signin';
   }
 
   onClickCreateAccount() {

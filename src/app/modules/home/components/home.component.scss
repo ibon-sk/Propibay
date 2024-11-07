@@ -15,6 +15,7 @@ $border-radius: 5px;
     .icon {
         font-size: 24px;
         vertical-align: middle;
+        color: $Propibay-primary;
       }
 
     .search-container {
@@ -59,6 +60,7 @@ $border-radius: 5px;
 
 .offers-container {
     display: block;
+    cursor: pointer;
     flex-direction: column;
     flex-wrap: wrap;
   }
