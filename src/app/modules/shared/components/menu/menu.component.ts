@@ -21,7 +21,7 @@ export class MenuComponent {
     }
 
     goCreateOffer() {
-      this.router.navigate(['/create-offer']);
+      this.router.navigate(['/create-property']);
     }
 
     goChat() {

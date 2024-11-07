@@ -10,6 +10,10 @@ export class UserService {
     this.email = email;
   }
 
+  reset() {
+    this.email = '';
+  }
+
   getEmail(): string {
     return this.email;
   }

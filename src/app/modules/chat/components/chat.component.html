@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="message-input">
-        <input [(ngModel)]="newMessage" placeholder="Escribe un mensaje..." />
+        <input [(ngModel)]="newMessage" (keydown.enter)="sendMessage()" placeholder="Escribe un mensaje..." />
         <button (click)="sendMessage()">Enviar</button>
       </div>
     </div>

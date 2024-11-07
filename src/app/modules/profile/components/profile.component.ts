@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ProfileController } from '../controllers/profile.controller';
 import { User } from '../../shared/models/user';
 import { UserService } from '../../shared/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteModalComponent } from '../../shared/components/delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +19,12 @@ export class ProfileComponent implements OnInit {
   isEditing: boolean = false;
   isUsernameEmpty: boolean = false;
 
-  constructor(private router: Router, private controller: ProfileController, private userService: UserService) {}
+  constructor(
+    private router: Router, 
+    private controller: ProfileController, 
+    private userService: UserService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.email = this.userService.getEmail();
@@ -68,7 +75,13 @@ export class ProfileComponent implements OnInit {
   } 
 
   deleteAccount() {
-    localStorage.removeItem('authToken');
-    this.router.navigate(['/login']);
+    const dialogRef = this.dialog.open(DeleteModalComponent);
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        localStorage.removeItem('authToken');
+        this.userService.reset();
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }
