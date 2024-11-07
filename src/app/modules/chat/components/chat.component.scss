@@ -2,14 +2,14 @@
 
 .chat-container {
     display: flex;
-    height: 100%;
+    height: auto;
+    overflow: hidden;
   
     .chat-list {
       width: 30%;
-      height: 100vh;
+      height: auto;
       max-width: 300px;
       border-right: 1px solid #ddd;
-      overflow-y: auto;
       background-color: white;
   
       .chat-item {
@@ -33,9 +33,10 @@
       .message-list {
         flex-grow: 1;
         padding: 20px;
-        overflow-y: scroll;
         display: flex;
         flex-direction: column;
+        overflow-y: auto; 
+        max-height: calc(100vh - 60px); 
   
         .message-received {
           align-self: flex-start;
