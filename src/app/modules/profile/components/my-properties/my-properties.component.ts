@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Property } from "src/app/modules/shared/models/property";
+import { Location } from '@angular/common';
 import { ProfileController } from "../../controllers/profile.controller";
 import { Router } from "@angular/router";
 
@@ -26,7 +27,11 @@ export class MyPropertiesComponent implements OnInit {
   filteredProperties: Property[] = [];
   searchQuery = '';
 
-  constructor(private router: Router, private controller: ProfileController) {}
+  constructor(
+    private router: Router, 
+    private controller: ProfileController,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     this.filteredProperties = this.properties;
@@ -44,7 +49,7 @@ export class MyPropertiesComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/profile']);
+    this.location.back();
   }
 
   deleteProperty(propertyId: number) {
