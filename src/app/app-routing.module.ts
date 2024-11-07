@@ -9,16 +9,24 @@ import { CreatePropertyComponent } from './modules/property/components/create-pr
 import { EditPropertyComponent } from './modules/property/components/edit-property/edit-property.component';
 import { ProfileComponent } from './modules/profile/components/profile.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PropertyMapComponent } from './modules/property/components/property-map/property-map.component';
+import { PropertyOfferChatComponent } from './modules/property/components/property-offer-chat/property-offer-chat.component';
+import { MyPropertiesComponent } from './modules/profile/components/my-properties/my-properties.component';
+import { MyFavouritesComponent } from './modules/profile/components/my-favourites/my-favourites.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },            
   { path: 'create-account', component: CreateAccountComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'offer/:id', component: PropertyComponent, canActivate: [AuthGuard] },
+  { path: 'property', component: PropertyComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'create-offer', component: CreatePropertyComponent, canActivate: [AuthGuard] },
-  { path: 'edit-offer', component: EditPropertyComponent, canActivate: [AuthGuard] },
+  { path: 'profile/my-properties', component: MyPropertiesComponent, canActivate: [AuthGuard] },
+  { path: 'profile/my-favourites', component: MyFavouritesComponent, canActivate: [AuthGuard] },
+  { path: 'create-property', component: CreatePropertyComponent, canActivate: [AuthGuard] },
+  { path: 'edit-property', component: EditPropertyComponent, canActivate: [AuthGuard] },
+  { path: 'property/map', component: PropertyMapComponent, canActivate: [AuthGuard] },
+  { path: 'property/chat', component: PropertyOfferChatComponent, canActivate: [AuthGuard] },
   // Redirige a /login por defecto o si no coincide ninguna ruta
   { path: '', redirectTo: '/login', pathMatch: 'full' }, 
   { path: '**', redirectTo: '/login' } 

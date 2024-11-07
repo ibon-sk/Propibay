@@ -1,4 +1,8 @@
+import { Injectable } from '@angular/core';
 
-export class OfferService {
+@Injectable({
+    providedIn: 'root'
+})
+export class PropertyService {
 
 }
