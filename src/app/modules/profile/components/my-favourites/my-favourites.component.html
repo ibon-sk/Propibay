@@ -14,5 +14,5 @@
     </div>
 </div>
 <div class="offers-container">
-    <app-property-card *ngFor="let property of filteredFavourites" [property]="property"></app-property-card>
+    <app-property-card *ngFor="let property of filteredFavourites" [property]="property" (click)="goToProperty(property.id)"></app-property-card>
 </div>

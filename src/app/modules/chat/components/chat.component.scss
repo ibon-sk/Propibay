@@ -15,11 +15,19 @@
       .chat-item {
         padding: 10px;
         cursor: pointer;
+        background: white;
         border-bottom: 1px solid #e0e0e0;
   
         &:hover {
-          background-color: #e0e0e0;
+          background-color: #f9f9f9;
         }
+      }
+
+      .chat-item-selected {
+        padding: 10px;
+        cursor: pointer;
+        background: #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
       }
     }
   

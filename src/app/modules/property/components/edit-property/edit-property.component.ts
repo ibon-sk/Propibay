@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { PropertyController } from "../../controllers/property.controller";
+import { Location } from '@angular/common';
 
 @Component({
   selector: "app-edit-property",
@@ -10,22 +12,30 @@ export class EditPropertyComponent {
   offerForm: FormGroup = this.fb.group({
     title: ['', [Validators.required]],
     description: [''],
-    propertyType: ['', [Validators.required]],
-    listingType: ['', [Validators.required]],
-    extension: [0, [Validators.required, Validators.min(100)]],
+    type: ['', [Validators.required]],
+    offerType: ['', [Validators.required]],
+    extension: [100, [Validators.required, Validators.min(100)]],
     rooms: [1, [Validators.required, Validators.min(1)]],
-    bathrooms: [1, [Validators.required, Validators.min(1)]],
-    price: [0, [Validators.required, Validators.min(1000)]]
+    baths: ['', [Validators.required]],
+    price: [1000, [Validators.required, Validators.min(1000)]]
   });
-  propertyTypes: string[] = ['Casa', 'Apartamento', 'Condominio'];
-  listingTypes: string[] = ['Venta', 'Alquiler'];
+  propertyTypes: string[] = [];
+  listingTypes: string[] = [];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, 
+    private controller: PropertyController,
+    private location: Location
+  ) {}
 
   onSubmit() {
+    this.offerForm.markAllAsTouched();
     if (this.offerForm.valid) {
-      console.log(this.offerForm.value);
+      // Enviar datos al controlador
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   onSearchLocation() {

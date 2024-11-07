@@ -25,7 +25,9 @@ export class ChatComponent implements OnInit {
                 { content: 'Hola', isSentByUser: true },
                 { content: 'Qué tal?', isSentByUser: false },
                 { content: 'Bien y tú', isSentByUser: true },
-                { content: 'Bien, a cuanto el piso?', isSentByUser: false },
+                { content: 'Bien', isSentByUser: false },
+                { content: 'A cuanto el piso?', isSentByUser: false },
+
             ] 
         },
         { name: 'Maximiliano López de Urriengorrieta', messages: [{ content: '¿Qué tal?', isSentByUser: true }] },

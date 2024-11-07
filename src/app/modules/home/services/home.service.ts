@@ -15,10 +15,4 @@ export class HomeService {
     getProperties(): Observable<any> {
         return this.http.get<Property>(this.apiUrl);
     }
-
-    getProperty(id: number): Observable<any> {
-        const params: HttpParams = new HttpParams().set('id', id.toString());
-
-        return this.http.get<Property>(this.apiUrl, { params });
-    }
 }

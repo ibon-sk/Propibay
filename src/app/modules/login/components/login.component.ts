@@ -25,9 +25,9 @@ export class LoginComponent {
       const { email, password } = this.loginForm.value;
       this.loginController.login(email, password).subscribe({
         next: (token: any) => {
-          localStorage.setItem('adminToken', token);
+          localStorage.setItem('authToken', token);
           this.userService.setEmail(email);
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/home']);
         }
       });
     }

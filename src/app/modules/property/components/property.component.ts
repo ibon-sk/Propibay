@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { PropertyController } from '../controllers/property.controller';
 import { Property } from '../../shared/models/property';
@@ -11,27 +11,36 @@ import { Property } from '../../shared/models/property';
 })
 export class PropertyComponent implements OnInit {
   
-  property: Property = {
-    id: 2,
-    image: undefined,
-    title: 'Casa en alquiler',
-    description: 'Casa en alquiler en la colonia Condesa',
-    type: 2,
-    offerType: 2,
-    rooms: 4,
-    baths: 3,
-    price: 15000,
-  };
+  property!: Property;
 
   constructor(
     private router: Router, 
     private controller: PropertyController,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.controller.getProperty(+id).subscribe((property: Property) => {
+        this.property = property;
+      });
+    }
+  }
 
   goBack() {
     this.location.back();
+  }
+
+  createChatAndNavigate() {
+    // Crear el chat con el propietario de la propiedad
+    this.router.navigate(['/chat']);
+  }
+
+  addToFavourites() {
+    if (this.property.id !== undefined) {
+          this.controller.addToFavourites('', this.property.id);
+    }
   }
 }

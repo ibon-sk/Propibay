@@ -1,6 +1,8 @@
 <div class="chat-container">
     <div class="chat-list">
-      <div *ngFor="let chat of chats" (click)="selectChat(chat)" class="chat-item">
+      <div *ngFor="let chat of chats" 
+        (click)="selectChat(chat)" 
+        [ngClass]="{'chat-item': chat !== selectedChat, 'chat-item-selected': chat === selectedChat}">
         {{ chat.name }}
       </div>
     </div>

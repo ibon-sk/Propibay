@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'profile/my-properties', component: MyPropertiesComponent, canActivate: [AuthGuard] },
   { path: 'profile/my-favourites', component: MyFavouritesComponent, canActivate: [AuthGuard] },
   { path: 'create-property', component: CreatePropertyComponent, canActivate: [AuthGuard] },
-  { path: 'edit-property', component: EditPropertyComponent, canActivate: [AuthGuard] },
+  { path: 'edit-property/:id', component: EditPropertyComponent, canActivate: [AuthGuard] },
   { path: 'property/:id/map', component: PropertyMapComponent, canActivate: [AuthGuard] },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
   // Rutas protegidas para Administración

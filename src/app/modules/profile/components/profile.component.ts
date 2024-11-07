@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   profileImageUrl: string = 'assets/images/unknown.png'; 
   user: User | undefined;
   email: string = '';
-  fullName: string = 'Desconocido';
+  fullName: string = '';
   isEditing: boolean = false;
   isUsernameEmpty: boolean = false;
 

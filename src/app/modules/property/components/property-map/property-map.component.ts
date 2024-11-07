@@ -8,8 +8,6 @@ import { PropertyController } from "../../controllers/property.controller";
   styleUrls: ["./property-map.component.scss"],
 })
 export class PropertyMapComponent {
-  lat = 51.678418;
-  lng = 7.809007;
 
   constructor(private router: Router, private controller: PropertyController) {}
 }

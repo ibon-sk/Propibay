@@ -14,11 +14,11 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post(this.apiUrl + '/login', {email: email, contrasenya: password});
+    return of('authToken'); //this.http.post(this.apiUrl + '/login', {email: email, contrasenya: password});
   }
 
   adminLogin(email: string, password: string): Observable<any> {
-    return this.http.post(this.adminApiUrl + '/login', {email: email, contrasenya: password});
+    return of('adminToken'); //this.http.post(this.adminApiUrl + '/login', {email: email, contrasenya: password});
   }
 
   createAccount(user: User): Observable<any> {

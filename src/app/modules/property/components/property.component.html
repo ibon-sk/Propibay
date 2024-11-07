@@ -1,19 +1,24 @@
 <div class="offer-detail-container">
+  <div style="position: relative; display: flex; align-items: center; padding-top: 20px; padding-bottom: 30px;">
+    <button mat-icon-button (click)="goBack()" style="position: absolute; left: 0;">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div>
   <div class="main-content">
     <div class="image-gallery">
       <button class="gallery-nav left"><mat-icon>chevron_left</mat-icon></button>
-      <img [src]="property.image || 'assets/images/default-property.png'" alt="Imagen de la propiedad" />
+      <img [src]="property?.image || 'assets/images/default-property.png'" alt="Imagen de la propiedad" />
       <button class="gallery-nav right"><mat-icon>chevron_right</mat-icon></button>
     </div>
 
     <div class="property-info">
-        <h1>{{ property.title }}</h1>
-        <p>{{ property.description }}</p>
-        <p>Tipo: {{ property.type }}</p>
-        <p>Habitaciones: {{ property.rooms }}</p>
-        <p>Baños: {{ property.baths }}</p>
-        <p>Tipo anuncio: {{ property.offerType }}</p>
-        <p>Precio: {{ property.price }}€</p>
+        <h1>{{ property?.title || 'Titulo' }}</h1>
+        <p>{{ property?.description || 'Descripción' }}</p>
+        <p><b>Tipo:</b> {{ property?.type || '--' }}</p>
+        <p><b>Habitaciones:</b> {{ property?.rooms || '--' }}</p>
+        <p><b>Baños:</b> {{ property?.baths || '--' }}</p>
+        <p><b>Tipo anuncio:</b> {{ property?.offerType || '--' }}</p>
+        <p class="price"><b>Precio:</b> {{ (property?.price || 0) | currency: 'EUR' }}</p>
     </div>
   </div>
 
@@ -22,11 +27,11 @@
       Abrir en el mapa
       <mat-icon>map</mat-icon>
     </button>
-    <button class="map-button">
+    <button class="map-button" (click)="createChatAndNavigate()">
       Contactar con el propietario
       <mat-icon>chat</mat-icon>
     </button>
-    <button class="map-button">
+    <button class="map-button" (click)="addToFavourites()">
       Añadir a favoritos
       <mat-icon>favorite</mat-icon>
     </button>

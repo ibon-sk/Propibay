@@ -1,3 +1,8 @@
+<div style="position: relative; display: flex; align-items: center; padding-top: 20px; padding-bottom: 30px;">
+    <button mat-icon-button (click)="goBack()" style="position: absolute; left: 0;">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+</div>
 <div class="create-offer-container">
     <div class="form-card">
         <h2>Datos de tu anuncio</h2>
@@ -15,41 +20,55 @@
             </div>
             <div>
                 <label for="type">Tipo de inmueble</label>
-                <select id="type" formControlName="propertyType" required>
+                <select id="type" formControlName="type" required>
                     <option value="" disabled selected>Selecciona</option>
                     <option value="house">Casa</option>
                     <option value="apartment">Apartamento</option>
-                    <option value="office">Oficina</option>
                 </select>
                 <div *ngIf="offerForm.get('type')?.invalid && offerForm.touched">
                   <small *ngIf="offerForm.get('type')?.errors?.['required']">Campo requerido</small>
                 </div>
             </div>
             <div>
-                <label for="listing-type">Tipo de anuncio</label>
-                <select id="listing-type" formControlName="listingType" required>
+                <label for="offer-type">Tipo de anuncio</label>
+                <select id="offer-type" formControlName="offerType" required>
                     <option value="" disabled selected>Selecciona</option>
-                    <option value="house">Casa</option>
-                    <option value="apartment">Apartamento</option>
-                     <option value="office">Oficina</option>
+                    <option value="sell">Venta</option>
+                    <option value="rent">Alquiler</option>
                 </select>
-                <div *ngIf="offerForm.get('listingType')?.invalid && offerForm.touched">
-                  <small *ngIf="offerForm.get('listingType')?.errors?.['required']">Campo requerido</small>
+                <div *ngIf="offerForm.get('offerType')?.invalid && offerForm.touched">
+                  <small *ngIf="offerForm.get('offerType')?.errors?.['required']">Campo requerido</small>
                 </div>
             </div>
             <div>
                 <label for="rooms">Habitaciones</label>
                 <input type="number" id="rooms" formControlName="rooms" required>
+                <div *ngIf="offerForm.get('rooms')?.invalid && offerForm.touched">
+                    <small *ngIf="offerForm.get('rooms')?.errors?.['required']">Campo requerido</small>
+                    <small *ngIf="offerForm.get('rooms')?.errors?.['min']">Mínimo 1 habitación</small>
+                </div>
             </div>
             <div>
-                <label for="bathrooms">Baños</label>
-                <input type="number" id="bathrooms" formControlName="bathrooms" required>
+                <label for="baths">Baños</label>
+                <input type="number" id="baths" formControlName="baths" required>
+                <div *ngIf="offerForm.get('baths')?.invalid && offerForm.touched">
+                    <small *ngIf="offerForm.get('baths')?.errors?.['required']">Campo requerido</small>
+                </div>
+            </div>
+            <div>
+                <label for="extension">Extensión</label>
+                <input type="text" id="extension" formControlName="extension" required>
+                <div *ngIf="offerForm.get('extension')?.invalid && offerForm.touched">
+                    <small *ngIf="offerForm.get('extension')?.errors?.['required']">Campo requerido</small>
+                    <small *ngIf="offerForm.get('extension')?.errors?.['min']">Mínima extensión de 100m2</small>
+                </div>
             </div>
             <div>
                 <label for="price">Precio</label>
                 <input type="text" id="price" formControlName="price" required>
                 <div *ngIf="offerForm.get('price')?.invalid && offerForm.touched">
                     <small *ngIf="offerForm.get('price')?.errors?.['required']">Campo requerido</small>
+                    <small *ngIf="offerForm.get('price')?.errors?.['min']">Precio mínimo de 1000€</small>
                 </div>
             </div>
             <div class="button-container">
