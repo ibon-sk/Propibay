@@ -23,6 +23,8 @@ import { ChatComponent } from './modules/chat/components/chat.component';
 import { AdminPropertiesComponent } from './modules/admin/components/admin-properties/admin-properties.component';
 import { AdminUsersComponent } from './modules/admin/components/admin-users/admin-users.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { PropertyMapComponent } from './modules/property/components/property-map/property-map.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { AuthInterceptor } from './auth.interceptor';
     MyPropertiesComponent,
     MyFavouritesComponent,
     EditPropertyComponent,
+    PropertyMapComponent,
     ChatComponent,
     ProfileComponent
   ],
@@ -50,11 +53,13 @@ import { AuthInterceptor } from './auth.interceptor';
     MatButtonModule,
     BrowserAnimationsModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PropertyMapComponent]
 })
 export class AppModule { }

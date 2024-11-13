@@ -11,6 +11,6 @@ export class HomeService {
     constructor(private http: HttpClient) { }
 
     getProperties(): Promise<any> {
-        return this.http.get<Property>(`${API.ROOT}${API.PROPERTIES}`).toPromise();
+        return this.http.get<Property[]>(`${API.ROOT}${API.PROPERTIES}`).toPromise();
     }
 }

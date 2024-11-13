@@ -10,20 +10,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./my-favourites.component.scss"],
 })
 export class MyFavouritesComponent implements OnInit {
-  favourites: Property[] = [
-    {
-      id: 1,
-      image: undefined,
-      title: 'Casa en la playa',
-      description: 'Casa con vista al mar',
-      type: 1,
-      offerType: 1,
-      extension: 100,
-      rooms: 3,
-      baths: 2,
-      price: 100000,
-    }
-  ];
+  favourites: Property[] = [];
   filteredFavourites: Property[] = [];
   searchQuery = '';
 
@@ -34,7 +21,11 @@ export class MyFavouritesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.filteredFavourites = this.favourites;
+    const email = localStorage.getItem('email') || '';
+    this.controller.getFavourites(email).then((response: any) => {
+      this.favourites = response;
+      this.filteredFavourites = this.favourites;
+    });
   }
 
   addFavourite(newFavourite: Property) {
@@ -51,8 +42,8 @@ export class MyFavouritesComponent implements OnInit {
 
   searchOffers(): void {
     this.filteredFavourites = this.favourites.filter(property =>
-      property.title === null || property.title?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-      property.description === null ||property.description?.toLowerCase().includes(this.searchQuery.toLowerCase())
+      property.titulo === null || property.titulo?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      property.descripcion === null ||property.descripcion?.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
 }

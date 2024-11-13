@@ -16,22 +16,23 @@ export class HomeComponent implements OnInit {
   constructor(private controller: HomeController, private router: Router) {}
 
   ngOnInit(): void {
-    this.controller.getProperties().then((properties: any[]) => {
+    this.controller.getProperties().then((properties: Property[]) => {
       this.properties = properties;
       this.filteredProperties = properties;
+      console.log(this.filteredProperties);
     }).catch(() => {
       console.log('Error getting properties');
     });
   }
 
-  goPropertyPage(propertyId: number | undefined): void {
+  goPropertyPage(propertyId: number): void {
     this.router.navigate([`/property/${propertyId}`]);
   }
 
   searchOffers(): void {
     this.filteredProperties = this.properties.filter(property =>
-      property.title === null || property.title?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-      property.description === null ||property.description?.toLowerCase().includes(this.searchQuery.toLowerCase())
+      property.titulo === null || property.titulo?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      property.descripcion === null ||property.descripcion?.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
 }

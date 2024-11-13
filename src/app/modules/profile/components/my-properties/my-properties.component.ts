@@ -10,20 +10,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./my-properties.component.scss"],
 })
 export class MyPropertiesComponent implements OnInit {
-  properties: Property[] = [
-    {
-      id: 1,
-      image: undefined,
-      title: 'Casa en la playa',
-      description: 'Casa con vista al mar',
-      type: 1,
-      offerType: 1,
-      extension: 100,
-      rooms: 3,
-      baths: 2,
-      price: 100000,
-    }
-  ];
+  properties: Property[] = [];
   filteredProperties: Property[] = [];
   searchQuery = '';
 
@@ -34,13 +21,17 @@ export class MyPropertiesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.filteredProperties = this.properties;
+    const email = localStorage.getItem('email') || '';
+    this.controller.getMyApartments(email).then((response) => {
+      this.properties = response;
+      this.filteredProperties = this.properties;
+    });
   }
 
   searchOffers(): void {
     this.filteredProperties = this.properties.filter(property =>
-      property.title === null || property.title?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-      property.description === null ||property.description?.toLowerCase().includes(this.searchQuery.toLowerCase())
+      property.titulo === null || property.titulo?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      property.descripcion === null ||property.descripcion?.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
 

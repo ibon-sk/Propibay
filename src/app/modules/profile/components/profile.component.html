@@ -2,7 +2,7 @@
 
     <div class="profile-image">
         <label for="file-input">
-            <img [src]="profileImageUrl" alt="Profile image" (click)="fileInput.click()" />
+            <img [src]="user.fotoPerfil || profileImageUrl" alt="Profile image" (click)="fileInput.click()" />
         </label>
       <input 
         type="file"   
@@ -37,7 +37,7 @@
     </div>
   
     <div class="actions">
-      <button (click)="manageApartments()">Mis Apartamentos</button>
+      <button (click)="manageApartments()">Mis Propiedades</button>
       <button (click)="viewFavoritesHistory()">Favoritos</button>
       <button class="delete" (click)="deleteAccount()">Eliminar cuenta</button>
     </div>

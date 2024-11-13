@@ -20,9 +20,9 @@ export class LoginService {
 
   createAccount(user: User): Promise<any> {
     const params = {
-      nombre: user.name,
-      apellidos: user.lastName,
-      contrasenya: user.password,
+      nombre: user.nombre,
+      apellidos: user.apellidos,
+      contrasenya: user.contrasenya,
       email: user.email
     }
 

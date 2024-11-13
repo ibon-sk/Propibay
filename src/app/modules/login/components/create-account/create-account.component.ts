@@ -31,10 +31,10 @@ export class CreateAccountComponent {
       this.createAccountForm.markAllAsTouched();
       if (this.createAccountForm.valid) {
         const user: User = {
-          name: this.createAccountForm.value.name,
-          lastName: this.createAccountForm.value.lastName,
+          nombre: this.createAccountForm.value.name,
+          apellidos: this.createAccountForm.value.lastName,
           email: this.createAccountForm.value.email,
-          password: this.createAccountForm.value.password
+          contrasenya: this.createAccountForm.value.password
         }
         this.controller.createAccount(user).then(() => {
           this.router.navigate(['/login']);

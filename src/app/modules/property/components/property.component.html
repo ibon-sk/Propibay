@@ -7,23 +7,22 @@
   <div class="main-content">
     <div class="image-gallery">
       <button class="gallery-nav left"><mat-icon>chevron_left</mat-icon></button>
-      <img [src]="property?.image || 'assets/images/default-property.png'" alt="Imagen de la propiedad" />
+      <img [src]="'assets/images/default-property.png'" alt="Imagen de la propiedad" />
       <button class="gallery-nav right"><mat-icon>chevron_right</mat-icon></button>
     </div>
 
     <div class="property-info">
-        <h1>{{ property?.title || 'Titulo' }}</h1>
-        <p>{{ property?.description || 'Descripción' }}</p>
-        <p><b>Tipo:</b> {{ property?.type || '--' }}</p>
-        <p><b>Habitaciones:</b> {{ property?.rooms || '--' }}</p>
-        <p><b>Baños:</b> {{ property?.baths || '--' }}</p>
-        <p><b>Tipo anuncio:</b> {{ property?.offerType || '--' }}</p>
-        <p class="price"><b>Precio:</b> {{ (property?.price || 0) | currency: 'EUR' }}</p>
+        <h1>{{ property.titulo || 'Titulo' }}</h1>
+        <p>{{ property.descripcion || 'Descripción' }}</p>
+        <p><b>Tipo:</b> {{ property.tipo_propiedad || '--' }}</p>
+        <p><b>Habitaciones:</b> {{ property.habitaciones || '--' }}</p>
+        <p><b>Tipo anuncio:</b> {{ property.tipo_oferta || '--' }}</p>
+        <p class="price"><b>Precio:</b> {{ (property.precio || 0) | currency: 'EUR' }}</p>
     </div>
   </div>
 
   <div class="action-buttons">
-    <button class="map-button">
+    <button class="map-button" (click)="openMapModal()">
       Abrir en el mapa
       <mat-icon>map</mat-icon>
     </button>

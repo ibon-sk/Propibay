@@ -1,7 +1,8 @@
 
 export class User {
-    name?: string;
-    lastName?: string;
+    nombre?: string;
+    apellidos?: string;
     email?: string;
-    password?: string;
+    contrasenya?: string;
+    fotoPerfil?: string;
 }

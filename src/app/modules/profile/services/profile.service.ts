@@ -11,23 +11,30 @@ export class ProfileService {
     constructor(private http: HttpClient) { }
 
     getProfile(email: string): Promise<any> {
-        const params: HttpParams = new HttpParams().set('email', email);
 
-        return this.http.get(`${API.ROOT}${API.CLIENTS}`, { params }).toPromise();
+        return this.http.get(`${API.ROOT}${API.CLIENTS}/${email}`).toPromise();
     }
 
     updateProfile(user: User): Promise<any> {
         if (user.email !== undefined) { 
-            const params: HttpParams = new HttpParams().set('email', user.email);
             const body = {
-                nombre: user.name,
-                apellidos: user.lastName,
-                contrasenya: user.password
+                email: user.email,
+                nombre: user.nombre,
+                apellidos: user.apellidos,
+                contrasenya: user.contrasenya
             };
-            return this.http.put(`${API.ROOT}${API.CLIENTS}`, body, { params }).toPromise();
+            return this.http.put(`${API.ROOT}${API.CLIENTS}/${user.email}`, body).toPromise();
         } else {
             return Promise.reject('No email provided');
         }
+    }
+
+    getMyApartments(email: string): Promise<any> {
+        return this.http.get(`${API.ROOT}${API.CLIENTS}/${email}${API.PROPERTIES}`).toPromise();
+    }
+
+    getFavourites(email: string): Promise<any> {
+        return this.http.get(`${API.ROOT}${API.CLIENTS}/${email}/favoritos`).toPromise();
     }
 
 }

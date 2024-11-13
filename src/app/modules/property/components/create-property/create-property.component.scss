@@ -27,12 +27,29 @@ h2 {
     flex: 1;
   }
 
-  form {
+  .row {
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    margin-bottom: 10px;
+  }
+
+  .property-form {
     margin: 0 auto;
     padding: 20px;  
     display: block;
     justify-items: center;
     align-items: center;
+
+    select {
+      width: 100%;
+      max-width: 200px; 
+      padding: 8px; 
+      border: 1px solid #ccc;
+      border-radius: 4px; 
+      background-color: #fff; 
+      font-size: 1rem; 
+    }
 
     div {
       margin-bottom: 15px;

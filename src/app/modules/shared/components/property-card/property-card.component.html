@@ -1,16 +1,15 @@
 <div class="property-card">
-    <img [src]="property.image || 'assets/images/default-property.png'" alt="Imagen del inmueble" class="property-image" />
+    <img [src]="'assets/images/default-property.png'" alt="Imagen del inmueble" class="property-image" />
   
     <div class="property-details">
-      <h3 class="property-title">{{ property.title }}</h3>
-      <p class="property-description">{{ property.description }}</p>
+      <h3 class="property-title">{{ property.titulo }}</h3>
+      <p class="property-description">{{ property.descripcion }}</p>
   
       <div class="property-meta">
-        <span class="property-rooms">{{ property.rooms }} {{ property.rooms === 1 ? 'habitación' : 'habitaciones' }}</span>
-        <span class="property-baths">{{ property.baths }} {{ property.baths === 1 ? 'baño' : 'baños' }}</span>
+        <span class="property-rooms">{{ property.habitaciones }} {{ property.habitaciones === 1 ? 'habitación' : 'habitaciones' }}</span>
       </div>
   
-      <div class="property-price">{{ property.price | currency: 'EUR' }}</div>
+      <div class="property-price">{{ property.precio | currency: 'EUR' }}</div>
     </div>
-    <p class="property-type">{{ property.type === 1 ? 'Casa' : property.type === 2 ? 'Apartamento' : 'Solar'}} en {{ property.offerType === 1 ? 'Venta' : 'Alquiler' }}</p>
+    <p class="property-type">{{ property.tipo_propiedad === 1 ? 'Casa' : property.tipo_propiedad === 2 ? 'Apartamento' : 'Solar'}} en {{ property.tipo_oferta === 1 ? 'Venta' : 'Alquiler' }}</p>
 </div>

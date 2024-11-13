@@ -28,8 +28,8 @@ export class AdminUsersComponent implements OnInit {
     searchUsers(): void {
         this.filteredUsers = this.users.filter(user =>
             user.email === null || user.email?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-            user.lastName === null || user.lastName?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-            user.name === null || user.name?.toLowerCase().includes(this.searchQuery.toLowerCase())
+            user.apellidos === null || user.apellidos?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+            user.nombre === null || user.nombre?.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
     } 
 

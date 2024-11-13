@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileController } from '../controllers/profile.controller';
 import { User } from '../../shared/models/user';
-import { UserService } from '../../shared/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteModalComponent } from '../../shared/components/delete-modal/delete-modal.component';
 
@@ -13,7 +12,7 @@ import { DeleteModalComponent } from '../../shared/components/delete-modal/delet
 })
 export class ProfileComponent implements OnInit {
   profileImageUrl: string = 'assets/images/unknown.png'; 
-  user: User | undefined;
+  user!: User;
   email: string = '';
   fullName: string = '';
   isEditing: boolean = false;
@@ -22,16 +21,14 @@ export class ProfileComponent implements OnInit {
   constructor(
     private router: Router, 
     private controller: ProfileController, 
-    private userService: UserService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.email = this.userService.getEmail();
-    this.controller.getProfile(this.email).subscribe((response: any) => {
+    this.email = localStorage.getItem('email') || '';
+    this.controller.getProfile(this.email).then((response: any) => {
       this.user = response;
-      this.profileImageUrl = response.profileImageUrl;
-      this.fullName = response.name + ' ' + response.lastName;
+      this.fullName = response.nombre + ' ' + response.apellidos;
     });
   }
 
@@ -46,6 +43,10 @@ export class ProfileComponent implements OnInit {
   saveUsername() {
     this.validateUsername();
     if (!this.isUsernameEmpty) {
+      const nameParts = this.fullName.split(' ');
+      this.user.nombre = nameParts[0];
+      this.user.apellidos = nameParts.slice(1).join(' ');
+      this.controller.updateProfile(this.user);
       this.isEditing = false;
     }
   }
@@ -58,6 +59,7 @@ export class ProfileComponent implements OnInit {
         this.profileImageUrl = reader.result as string;
       };
       reader.readAsDataURL(file);
+      // Subir la foto
     }
   }
 
@@ -70,18 +72,14 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('authToken');
+    localStorage.clear();
     this.router.navigate(['/login']);
   } 
 
   deleteAccount() {
     const dialogRef = this.dialog.open(DeleteModalComponent);
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-      if (confirmed) {
-        localStorage.removeItem('authToken');
-        this.userService.reset();
-        this.router.navigate(['/login']);
-      }
+      if (confirmed) this.logout();
     });
   }
 }

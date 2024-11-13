@@ -26,8 +26,8 @@ export class AdminPropertiesComponent implements OnInit {
 
     searchOffers(): void {
       this.filteredProperties = this.properties.filter(property =>
-        property.title === null || property.title?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        property.description === null ||property.description?.toLowerCase().includes(this.searchQuery.toLowerCase())
+        property.titulo === null || property.titulo?.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        property.descripcion === null ||property.descripcion?.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
 
