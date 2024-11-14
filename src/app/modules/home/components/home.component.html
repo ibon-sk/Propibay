@@ -13,10 +13,16 @@
           <option value="0">Venta</option>
           <option value="1">Alquiler</option>
         </select>
+        <select [(ngModel)]="filters.estado" class="property-type-select">
+          <option value="-1">Cualquier estado</option>
+          <option value="0">Obra nueva</option>
+          <option value="1">Buen estado</option>
+          <option value="2">A reformar</option>
+        </select>
         <select [(ngModel)]="orderType" class="property-type-select">
           <option value="-1">Sin ordenar</option>
-          <option value="0">Ordenar por precio DESC</option>
-          <option value="1">Ordenar por precio ASC</option>
+          <option value="0">Ordenar por precio ASC</option>
+          <option value="1">Ordenar por precio DESC</option>
         </select>
         <button class="search-button" (click)="searchOffers()">
           <mat-icon class="icon">search</mat-icon>
