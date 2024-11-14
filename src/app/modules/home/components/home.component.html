@@ -9,5 +9,5 @@
     </div>
 </div>
 <div class="offers-container">
-    <app-property-card *ngFor="let property of filteredProperties" [property]="property" (click)="goPropertyPage(property.id)"></app-property-card>
+    <app-property-card *ngFor="let property of filteredProperties" [isOwner]="property.propietario_email === email" [property]="property" (click)="goPropertyPage(property.id)"></app-property-card>
 </div>

@@ -13,10 +13,11 @@
 
     <div class="property-info">
         <h1>{{ property.titulo || 'Titulo' }}</h1>
-        <p>{{ property.descripcion || 'Descripción' }}</p>
-        <p><b>Tipo:</b> {{ property.tipo_propiedad || '--' }}</p>
+        <p>ℹ️ {{ property.descripcion || 'Descripción' }}</p>
+        <p>📍 {{ property.ubicacion || 'Ubicacion' }}</p>
+        <p><b>Tipo:</b> {{ property.tipo_propiedad === 0 ? 'Vivienda' : property.tipo_propiedad === 1 ? 'Oficina' : 'Garaje' }}</p>
+        <p><b>Tipo de anuncio:</b> {{ property.tipo_oferta === 0 ? 'Venta' : 'Alquiler' }}</p>
         <p><b>Habitaciones:</b> {{ property.habitaciones || '--' }}</p>
-        <p><b>Tipo anuncio:</b> {{ property.tipo_oferta || '--' }}</p>
         <p class="price"><b>Precio:</b> {{ (property.precio || 0) | currency: 'EUR' }}</p>
     </div>
   </div>
@@ -30,9 +31,21 @@
       Contactar con el propietario
       <mat-icon>chat</mat-icon>
     </button>
-    <button class="map-button" (click)="addToFavourites()">
+    <button class="map-button" (click)="addToFavourites()" *ngIf="!isFavourite">
       Añadir a favoritos
       <mat-icon>favorite</mat-icon>
+    </button>
+    <button class="map-button-delete" (click)="removeFromFavourites()" *ngIf="isFavourite">
+      Eliminar de favoritos
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button class="map-button-offer" (click)="createOffer()" *ngIf="!isOwner">
+      Realizar oferta
+      <mat-icon>local_offer</mat-icon>
+    </button>
+    <button class="map-button" (click)="navigateToEdit()" *ngIf="isOwner">
+      Editar propiedad
+      <mat-icon>edit</mat-icon>
     </button>
   </div>
 </div>

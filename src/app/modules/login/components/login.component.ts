@@ -29,6 +29,7 @@ export class LoginComponent {
       }).catch(() => {
         this.loginController.login(email, password).then((response: any) => {
           localStorage.setItem('authToken', response.token);
+          localStorage.setItem('tokenCreationTime', new Date().getTime().toString());
           localStorage.setItem('email', email);
           this.router.navigate(['/home']);
         }).catch(() => {

@@ -8,8 +8,14 @@
       <div class="property-meta">
         <span class="property-rooms">{{ property.habitaciones }} {{ property.habitaciones === 1 ? 'habitación' : 'habitaciones' }}</span>
       </div>
-  
+      <div class="property-meta">
+        <span class="property-rooms">{{ property.estado === 0 ? 'Obra nueva' : property.estado === 1 ? 'Buen estado' : 'A reformar'}}</span>
+      </div>
+      <div class="property-meta">
+        <span class="property-rooms">{{ property.tipo_propiedad === 0 ? 'Vivienda' : property.tipo_propiedad === 1 ? 'Oficina' : 'Garaje'}} en {{ property.tipo_oferta === 0 ? 'Venta' : 'Alquiler' }}</span>
+      </div>
+
       <div class="property-price">{{ property.precio | currency: 'EUR' }}</div>
     </div>
-    <p class="property-type">{{ property.tipo_propiedad === 1 ? 'Casa' : property.tipo_propiedad === 2 ? 'Apartamento' : 'Solar'}} en {{ property.tipo_oferta === 1 ? 'Venta' : 'Alquiler' }}</p>
+    <p class="property-type">{{ isOwner ? 'Eres propietario' : '' }}</p>
 </div>

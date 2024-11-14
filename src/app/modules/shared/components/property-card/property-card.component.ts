@@ -8,6 +8,7 @@ import { Property } from "../../models/property";
 })
 export class PropertyCardComponent {
   @Input() property!: Property;
+  @Input() isOwner: boolean = false;
   @Output() propertySelected = new EventEmitter<Property>();
 
   selectOffer() {

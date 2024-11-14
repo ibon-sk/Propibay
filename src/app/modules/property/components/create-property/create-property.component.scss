@@ -10,6 +10,11 @@ h2 {
   padding-left: 20px;
 }
 
+small {
+  color: $Propibay-warn;
+  font-size: 0.9rem;
+}
+
 .create-offer-container {
     display: flex;
     gap: 20px;
@@ -53,11 +58,6 @@ h2 {
 
     div {
       margin-bottom: 15px;
-  
-      small {
-        color: $Propibay-warn;
-        font-size: 0.9rem;
-      }
   
       label {
         font-weight: bold;

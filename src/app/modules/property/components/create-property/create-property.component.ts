@@ -16,16 +16,18 @@ export class CreatePropertyComponent implements OnInit, AfterViewInit, OnDestroy
     description: [''],
     type: ['', [Validators.required]],
     offerType: ['', [Validators.required]],
-    extension: [100, [Validators.required, Validators.min(100)]],
-    state: [1, [Validators.required]],
-    rooms: [1, [Validators.required, Validators.min(1)]],
-    price: [1000, [Validators.required, Validators.min(1000)]],
+    extension: ['', [Validators.required, Validators.min(10)]],
+    state: ['', [Validators.required]],
+    rooms: ['', [Validators.required, Validators.min(1)]],
+    price: ['', [Validators.required]],
     location: ['', [Validators.required]]
   });
   propertyTypes: string[] = [];
   listingTypes: string[] = [];
   private map!: L.Map;
   private icon!: L.Icon;
+  private currentMarker!: L.Marker;
+
 
   constructor(
     private fb: FormBuilder, 
@@ -64,7 +66,7 @@ export class CreatePropertyComponent implements OnInit, AfterViewInit, OnDestroy
     if (this.propertyForm.valid) {
       const property = {
         propietario_email: localStorage.getItem('email') || '',
-        id: Math.floor(Math.random() * 1000000),
+        id: 0,
         imagenes: [],
         titulo: this.propertyForm.get('title')?.value,
         descripcion: this.propertyForm.get('description')?.value,
@@ -98,11 +100,16 @@ export class CreatePropertyComponent implements OnInit, AfterViewInit, OnDestroy
         const lat = parseFloat(location.lat);
         const lon = parseFloat(location.lon);
 
-        this.map.setView([lat, lon], 13);
+        this.map.setView([lat, lon], 15);
 
-        L.marker([lat, lon], { icon: this.icon}).addTo(this.map)
+        if (this.currentMarker) {
+          this.map.removeLayer(this.currentMarker);
+        }
+
+        this.currentMarker = L.marker([lat, lon], { icon: this.icon}).addTo(this.map)
           .bindPopup(location.display_name)
           .openPopup();
+        this.propertyForm.get('location')?.setValue(location.display_name);
       } else {
         console.error('No location found');
       }

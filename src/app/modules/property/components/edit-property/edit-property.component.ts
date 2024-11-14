@@ -20,10 +20,10 @@ export class EditPropertyComponent implements OnInit, OnDestroy {
     description: [''],
     type: ['', [Validators.required]],
     offerType: ['', [Validators.required]],
-    extension: [100, [Validators.required, Validators.min(100)]],
-    state: [1, [Validators.required]],
-    rooms: [1, [Validators.required, Validators.min(1)]],
-    price: [1000, [Validators.required, Validators.min(1000)]],
+    extension: ['', [Validators.required, Validators.min(10)]],
+    state: ['', [Validators.required]],
+    rooms: ['', [Validators.required, Validators.min(1)]],
+    price: ['', [Validators.required]],
     location: ['', [Validators.required]]
   });
   propertyTypes: string[] = [];
@@ -31,6 +31,7 @@ export class EditPropertyComponent implements OnInit, OnDestroy {
   property!: Property;
   private map!: L.Map;
   private icon!: L.Icon;
+  private currentMarker!: L.Marker;
 
   constructor(private fb: FormBuilder, 
     private controller: PropertyController,
@@ -65,10 +66,10 @@ export class EditPropertyComponent implements OnInit, OnDestroy {
         price: property.precio,
         location: property.ubicacion
       });
+      if(property.ubicacion !== null) {
+        this.searchLocation(this.property.ubicacion);
+      }
     });
-    if(location != null) {
-      this.searchLocation(this.property.ubicacion);
-    }
   }
 
   ngAfterViewInit(): void {
@@ -128,11 +129,16 @@ export class EditPropertyComponent implements OnInit, OnDestroy {
         const lat = parseFloat(location.lat);
         const lon = parseFloat(location.lon);
 
-        this.map.setView([lat, lon], 13);
+        this.map.setView([lat, lon], 15);
 
-        L.marker([lat, lon], { icon: this.icon}).addTo(this.map)
+        if (this.currentMarker) {
+          this.map.removeLayer(this.currentMarker);
+        }
+
+        this.currentMarker = L.marker([lat, lon], { icon: this.icon}).addTo(this.map)
           .bindPopup(location.display_name)
           .openPopup();
+        this.propertyForm.get('location')?.setValue(location.display_name);
       } else {
         console.error('No location found');
       }

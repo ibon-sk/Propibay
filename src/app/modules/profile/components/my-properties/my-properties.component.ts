@@ -13,6 +13,7 @@ export class MyPropertiesComponent implements OnInit {
   properties: Property[] = [];
   filteredProperties: Property[] = [];
   searchQuery = '';
+  email = localStorage.getItem('email') || '';
 
   constructor(
     private router: Router, 
@@ -25,6 +26,7 @@ export class MyPropertiesComponent implements OnInit {
     this.controller.getMyApartments(email).then((response) => {
       this.properties = response;
       this.filteredProperties = this.properties;
+      console.log(this.filteredProperties);
     });
   }
 

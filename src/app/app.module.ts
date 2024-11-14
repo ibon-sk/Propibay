@@ -25,6 +25,7 @@ import { AdminUsersComponent } from './modules/admin/components/admin-users/admi
 import { AuthInterceptor } from './auth.interceptor';
 import { PropertyMapComponent } from './modules/property/components/property-map/property-map.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

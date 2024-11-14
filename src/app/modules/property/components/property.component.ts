@@ -5,6 +5,7 @@ import { PropertyController } from '../controllers/property.controller';
 import { Property } from '../../shared/models/property';
 import { MatDialog } from '@angular/material/dialog';
 import { PropertyMapComponent } from './property-map/property-map.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-property',
@@ -13,6 +14,8 @@ import { PropertyMapComponent } from './property-map/property-map.component';
 })
 export class PropertyComponent implements OnInit {
   
+  public isFavourite = false;
+  public isOwner = false;
   public property: Property = {
     titulo: '',
     descripcion: '',
@@ -33,14 +36,20 @@ export class PropertyComponent implements OnInit {
     private controller: PropertyController,
     private location: Location,
     private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snack: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    const email = localStorage.getItem('email') || '';
     if (id !== null) {
       this.controller.getProperty(+id).then((property: Property) => {
         this.property = property;
+        this.isOwner = this.property.propietario_email === email;
+      });
+      this.controller.checkFavourite(email, +id).then((result: any) => {
+        this.isFavourite = result.isFavorito;
       });
     }
   }
@@ -53,8 +62,16 @@ export class PropertyComponent implements OnInit {
     });
   }
 
+  createOffer() {
+    // Crear una oferta para la propiedad
+  }
+
   goBack() {
     this.location.back();
+  }
+
+  navigateToEdit() {
+    this.router.navigate(['/edit-property', this.property.id]);
   }
 
   createChatAndNavigate() {
@@ -64,7 +81,26 @@ export class PropertyComponent implements OnInit {
 
   addToFavourites() {
     if (this.property.id !== undefined) {
-          this.controller.addToFavourites('', this.property.id);
+      const email = localStorage.getItem('email') || '';
+      this.controller.addToFavourites(email, this.property.id).then(() => {
+        this.isFavourite = true;      
+        this.snack.open('Propiedad añadida a favoritos', 'Cerrar', {
+          duration: 3000,
+        });
+      });
+
+    }
+  }
+
+  removeFromFavourites() {
+    if (this.property.id !== undefined) {
+      const email = localStorage.getItem('email') || '';
+      this.controller.removeFromFavourites(email, this.property.id).then(() => {
+        this.snack.open('Propiedad eliminada de favoritos', 'Cerrar', {
+          duration: 3000,
+        });
+        this.isFavourite = false;
+      });
     }
   }
 }

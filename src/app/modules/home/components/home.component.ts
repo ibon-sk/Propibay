@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   filteredProperties: Property[] = [];  
   properties: Property[] = [];
   searchQuery = '';  
+  email = localStorage.getItem('email') || '';
 
   constructor(private controller: HomeController, private router: Router) {}
 
@@ -19,7 +20,6 @@ export class HomeComponent implements OnInit {
     this.controller.getProperties().then((properties: Property[]) => {
       this.properties = properties;
       this.filteredProperties = properties;
-      console.log(this.filteredProperties);
     }).catch(() => {
       console.log('Error getting properties');
     });

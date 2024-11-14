@@ -135,6 +135,18 @@
         &.map-button {
           background-color: $Propibay-primary;
         }
+
+        &.map-button-offer {
+          background-color: $Propibay-green;
+        }
+
+        &.map-button-delete {
+          background-color: $Propibay-warn;
+
+          &:hover {
+            background-color: darken($Propibay-warn, 20%);
+          }
+        }
       }
     }
   }

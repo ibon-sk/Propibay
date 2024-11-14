@@ -30,11 +30,11 @@ export class ProfileService {
     }
 
     getMyApartments(email: string): Promise<any> {
-        return this.http.get(`${API.ROOT}${API.CLIENTS}/${email}${API.PROPERTIES}`).toPromise();
+        return this.http.get(`${API.ROOT}${API.PROPERTIES}/por/${email}`).toPromise();
     }
 
     getFavourites(email: string): Promise<any> {
-        return this.http.get(`${API.ROOT}${API.CLIENTS}/${email}/favoritos`).toPromise();
+        return this.http.get(`${API.ROOT}${API.CLIENTS}/${email}${API.FAVOURITES}`).toPromise();
     }
 
 }

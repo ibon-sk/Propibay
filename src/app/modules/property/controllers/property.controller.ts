@@ -29,4 +29,12 @@ export class PropertyController {
         return this.service.addToFavourites(email, propertyId);
     }
 
+    checkFavourite(email: string, propertyId: number) {
+        return this.service.checkFavourite(email, propertyId);
+    }
+
+    removeFromFavourites(email: string, propertyId: number) {
+        return this.service.removeFromFavourites(email, propertyId);
+    }
+
 }
