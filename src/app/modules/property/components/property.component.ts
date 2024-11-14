@@ -9,6 +9,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FirstMessageModalComponent } from '../../shared/components/first-message-modal/first-message-modal.component';
 import { Chat } from '../../shared/models/chat';
 import { ChatController } from '../../chat/controllers/chat.controller';
+import { OfferController } from '../../offer/controllers/offer.controller';
+import { OfferModalComponent } from '../../shared/components/offer-modal/offer-modal.component';
 
 @Component({
   selector: 'app-property',
@@ -19,6 +21,7 @@ export class PropertyComponent implements OnInit {
   
   public isFavourite = false;
   public isOwner = false;
+  public email = localStorage.getItem('email') || '';
   public property: Property = {
     titulo: '',
     descripcion: '',
@@ -38,6 +41,7 @@ export class PropertyComponent implements OnInit {
     private router: Router, 
     private controller: PropertyController,
     private chatController: ChatController,
+    private offerController: OfferController,
     private location: Location,
     private route: ActivatedRoute,
     private dialog: MatDialog,
@@ -46,13 +50,12 @@ export class PropertyComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    const email = localStorage.getItem('email') || '';
     if (id !== null) {
       this.controller.getProperty(+id).then((property: Property) => {
         this.property = property;
-        this.isOwner = this.property.propietario_email === email;
+        this.isOwner = this.property.propietario_email === this.email;
       });
-      this.controller.checkFavourite(email, +id).then((result: any) => {
+      this.controller.checkFavourite(this.email, +id).then((result: any) => {
         this.isFavourite = result.isFavorito;
       });
     }
@@ -67,7 +70,25 @@ export class PropertyComponent implements OnInit {
   }
 
   createOffer() {
-    // Crear una oferta para la propiedad
+    const dialogRef = this.dialog.open(OfferModalComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(amount => {
+      if (amount) {
+        const offer = {
+          id_oferta: 0,
+          cliente_email: this.email,
+          propiedad_id: this.property.id,
+          dinero_oferta: amount
+        }
+        this.offerController.createOffer(offer).then(() => {
+          this.snack.open('Oferta enviada', 'Cerrar', {
+            duration: 3000,
+          });
+        });
+      }
+    });
   }
 
   goBack() {

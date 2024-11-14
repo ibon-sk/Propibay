@@ -12,7 +12,13 @@ export class AuthInterceptor implements HttpInterceptor {
         headers: req.headers.set('authorization', `Bearer ${authToken}`)
       });
       return next.handle(cloned);
-    } else {
+    } else if (adminToken) {
+      const cloned = req.clone({
+        headers: req.headers.set('authorization', `Bearer ${adminToken}`)
+      });
+      return next.handle(cloned);
+    }
+    else {
       return next.handle(req);
     }
   }

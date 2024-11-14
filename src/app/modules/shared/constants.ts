@@ -4,6 +4,7 @@ export const API = {
   PROPERTIES: '/propiedades',
   FAVOURITES: '/favoritos',
   OFFERS: '/ofertas',
+  SELLS: '/ventas',
   CHATS: '/chats',
   LOGIN: '/login',
   CREATE_ACCOUNT: '/create-account',

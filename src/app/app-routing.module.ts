@@ -16,6 +16,7 @@ import { ChatComponent } from './modules/chat/components/chat.component';
 import { AdminUsersComponent } from './modules/admin/components/admin-users/admin-users.component';
 import { AdminPropertiesComponent } from './modules/admin/components/admin-properties/admin-properties.component';
 import { AdminGuard } from './guards/admin.guard';
+import { OffersComponent } from './modules/offer/components/offers.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },            
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'edit-property/:id', component: EditPropertyComponent, canActivate: [AuthGuard] },
   { path: 'property/:id/map', component: PropertyMapComponent, canActivate: [AuthGuard] },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
+  { path: 'offers', component: OffersComponent, canActivate: [AuthGuard] },
   // Rutas protegidas para Administración
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
   { path: 'admin/users', component: AdminUsersComponent, canActivate: [AdminGuard] },

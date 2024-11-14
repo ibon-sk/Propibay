@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';  
 import { FirstMessageModalComponent } from './components/first-message-modal/first-message-modal.component';
+import { OfferModalComponent } from './components/offer-modal/offer-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FirstMessageModalComponent } from './components/first-message-modal/fir
     UserCardComponent,
     MenuComponent,
     DeleteModalComponent,
-    FirstMessageModalComponent
+    FirstMessageModalComponent,
+    OfferModalComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { FirstMessageModalComponent } from './components/first-message-modal/fir
     PropertyCardComponent,
     UserCardComponent,
     MenuComponent,
-    FirstMessageModalComponent
+    FirstMessageModalComponent,
+    OfferModalComponent
   ]
 })
 export class SharedModule { }

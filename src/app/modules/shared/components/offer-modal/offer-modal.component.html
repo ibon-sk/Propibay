@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Completa tu oferta</h2>
+    <form [formGroup]="form" (ngSubmit)="sendMessage()">
+      <mat-form-field appearance="outline">
+        <mat-label>Cantidad</mat-label>
+        <input matInput formControlName="amount" placeholder="Escribe tu mensaje">
+        <mat-error *ngIf="form.get('amount')?.invalid">Campo requerido</mat-error>
+      </mat-form-field>
+      <div mat-dialog-actions>
+        <button (click)="close()">Cancelar</button>
+        <button class="confirm-button" type="submit" [disabled]="form.invalid">Crear oferta</button>
+      </div>
+    </form>
+  
+  </div>

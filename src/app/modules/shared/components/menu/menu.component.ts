@@ -12,8 +12,8 @@ export class MenuComponent {
 
     constructor(private router: Router) {}
 
-    toggleDropdown() {
-      console.log('Toggle dropdown');
+    goToOffers() {
+      this.router.navigate(['/offers']);
     }
   
     goProfile() {

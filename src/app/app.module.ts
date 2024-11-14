@@ -26,6 +26,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { PropertyMapComponent } from './modules/property/components/property-map/property-map.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { OffersComponent } from './modules/offer/components/offers.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     EditPropertyComponent,
     PropertyMapComponent,
     ChatComponent,
-    ProfileComponent
+    ProfileComponent,
+    OffersComponent
   ],
   imports: [
     BrowserModule,
