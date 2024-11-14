@@ -79,7 +79,11 @@ export class ProfileComponent implements OnInit {
   deleteAccount() {
     const dialogRef = this.dialog.open(DeleteModalComponent);
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-      if (confirmed) this.logout();
+      if (confirmed) {
+        this.controller.deleteProfile(this.email).then(() => {
+          this.logout();
+        });
+      }
     });
   }
 }

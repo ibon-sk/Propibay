@@ -17,6 +17,10 @@ export class ProfileController {
         return this.service.updateProfile(user);
     }
 
+    deleteProfile(email: string) {
+        return this.service.deleteProfile(email);
+    }
+
     getMyApartments(email: string) {
         return this.service.getMyApartments(email);
     }

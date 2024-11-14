@@ -29,6 +29,10 @@ export class ProfileService {
         }
     }
 
+    deleteProfile(email: string): Promise<any> {
+        return this.http.delete(`${API.ROOT}${API.CLIENTS}/${email}`).toPromise();
+    }
+
     getMyApartments(email: string): Promise<any> {
         return this.http.get(`${API.ROOT}${API.PROPERTIES}/por/${email}`).toPromise();
     }
