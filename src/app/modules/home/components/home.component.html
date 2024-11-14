@@ -2,6 +2,8 @@
     <mat-icon class="icon">house</mat-icon>
     <h1>Bienvenido a Propibay</h1>
     <div class="search-container">
+      <input matInput placeholder="Nº habitaciones" [(ngModel)]="filters.nHabitaciones" class="search-input"/>
+      <input matInput placeholder="Extensión" [(ngModel)]="filters.extension" class="search-input"/>
         <select [(ngModel)]="filters.tipoInmueble" class="property-type-select">
           <option value="-1">Cualquier inmueble</option>
           <option value="0">Vivienda</option>

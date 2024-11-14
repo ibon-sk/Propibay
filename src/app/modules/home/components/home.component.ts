@@ -52,6 +52,8 @@ export class HomeComponent implements OnInit {
     this.filters.tipoInmueble = parseInt(this.filters.tipoInmueble as any);
     this.filters.tipoOferta = parseInt(this.filters.tipoOferta as any);
     this.filters.estado = parseInt(this.filters.estado as any);
+    this.filters.extension = this.filters.extension ? parseInt(this.filters.extension as any) : undefined;
+    this.filters.nHabitaciones = this.filters.nHabitaciones ? parseInt(this.filters.nHabitaciones as any) : undefined;
     this.setOrderParameter();
     if (this.filters?.tipoInmueble < 0) this.filters.tipoInmueble = undefined;
     if (this.filters?.tipoOferta < 0) this.filters.tipoOferta = undefined;
@@ -82,8 +84,8 @@ export class HomeComponent implements OnInit {
     this.filters = {
       precioMin: undefined,
       precioMax: undefined,
-      extension: undefined,
-      nHabitaciones: undefined,
+      extension: this.filters.extension,
+      nHabitaciones: this.filters.nHabitaciones,
       estado: this.filters.estado === undefined ? -1 : this.filters.estado,
       tipoInmueble: this.filters.tipoInmueble === undefined ? -1 : this.filters.tipoInmueble,
       tipoOferta: this.filters.tipoOferta === undefined ? -1 : this.filters.tipoOferta,
