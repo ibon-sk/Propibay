@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>Enviar primer mensaje</h2>
+  <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+    <mat-form-field appearance="outline">
+      <mat-label>Mensaje</mat-label>
+      <input matInput formControlName="message" placeholder="Escribe tu mensaje">
+      <mat-error *ngIf="messageForm.get('message')?.invalid">Campo requerido</mat-error>
+    </mat-form-field>
+    <div mat-dialog-actions>
+      <button (click)="close()">Cancelar</button>
+      <button class="confirm-button" type="submit" [disabled]="messageForm.invalid">Enviar</button>
+    </div>
+  </form>
+
+</div>

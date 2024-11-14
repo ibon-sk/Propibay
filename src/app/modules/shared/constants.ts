@@ -3,6 +3,8 @@ export const API = {
   CLIENTS: '/clientes',
   PROPERTIES: '/propiedades',
   FAVOURITES: '/favoritos',
+  OFFERS: '/ofertas',
+  CHATS: '/chats',
   LOGIN: '/login',
   CREATE_ACCOUNT: '/create-account',
   ADMIN: '/administradores',

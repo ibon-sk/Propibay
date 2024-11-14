@@ -67,4 +67,14 @@ export class PropertyService {
         return this.http.delete(`${API.ROOT}${API.CLIENTS}/${email}${API.FAVOURITES}/${propertyId}`).toPromise();
     }
 
+    createOffer(offerer: string, owner: string, propertyId: number, price: number): Promise<any> {
+        const body = {
+            clienteEmail: offerer,
+            clienteEmail2: owner,
+            propiedadID: propertyId,
+            precioFinal: price
+        };
+        return this.http.post(`${API.ROOT}${API.CLIENTS}${API.OFFERS}`, body).toPromise();
+    }
+
 }

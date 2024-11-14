@@ -37,4 +37,8 @@ export class PropertyController {
         return this.service.removeFromFavourites(email, propertyId);
     }
 
+    createOffer(offerer: string, owner: string, propertyId: number, offer: number) {
+        return this.service.createOffer(offerer, owner, propertyId, offer);
+    }
+
 }

@@ -1,16 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ChatController } from "../controllers/chat.controller";
-
-interface Message {
-    content: string;
-    isSentByUser: boolean;
-  }
-  
-  interface Chat {
-    name: string;
-    messages: Message[];
-  }
+import { Chat } from "../../shared/models/chat";
 
 @Component({
   selector: "app-chat",
@@ -19,37 +10,56 @@ interface Message {
 })
 export class ChatComponent implements OnInit {
     
-    chats: Chat[] = [
-        { name: 'Lorenzo Sierra Verdés', messages: [
-                { content: 'Hola', isSentByUser: false },
-                { content: 'Hola', isSentByUser: true },
-                { content: 'Qué tal?', isSentByUser: false },
-                { content: 'Bien y tú', isSentByUser: true },
-                { content: 'Bien', isSentByUser: false },
-                { content: 'A cuanto el piso?', isSentByUser: false },
-
-            ] 
-        },
-        { name: 'Maximiliano López de Urriengorrieta', messages: [{ content: '¿Qué tal?', isSentByUser: true }] },
-    ];
-    selectedChat?: Chat;
+    chats: { [key: string]: Chat[] } = {};
+    selectedChat: string = '';
     newMessage: string = '';
+    
 
     constructor(private router: Router, private controller: ChatController) {}
     
     ngOnInit(): void {
-        this.selectedChat = this.chats[0];
+      const email = localStorage.getItem('email') || '';
+      this.controller.getMessages(email).then((messages: any) => {
+        this.chats = messages.reduce((acc: { [key: string]: Chat[] }, message: Chat) => {
+          const otherEmail = message.cliente_email === email ? message.cliente_email2 : message.cliente_email;
+          if (!acc[otherEmail]) {
+            acc[otherEmail] = [];
+          }
+          message.isSentByUser = message.cliente_email === email;
+          acc[otherEmail].push(message);
+          return acc;
+        }, {});
+        const users = this.getUsers();
+        if (users.length > 0) {
+          this.selectedChat = users[0];
+        }
+      });
+    }
+
+    getUsers(): string[] {
+      return Object.keys(this.chats);
     }
     
-    selectChat(chat: Chat) {
-        this.selectedChat = chat;
+    selectChat(user: string) {
+      this.selectedChat = user;
     }
     
     sendMessage() {
-        if (this.newMessage.trim()) {
-          this.selectedChat?.messages.push({ content: this.newMessage, isSentByUser: true });
-          this.newMessage = '';
-        }
+      if (this.newMessage.trim() && this.selectedChat) {
+        const email = localStorage.getItem('email') || '';
+        const message: Chat = {
+          id: Date.now(),
+          chat: this.newMessage,
+          fecha: new Date().toISOString(),
+          cliente_email: email,
+          cliente_email2: this.selectedChat,
+          isSentByUser: true
+        };
+        this.newMessage = '';
+        this.controller.sendMessage(message).then(() => {
+          this.chats[this.selectedChat].push(message);
+        });
       }
+    }
 
 }

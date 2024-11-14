@@ -1,19 +1,20 @@
 <div class="chat-container">
     <div class="chat-list">
-      <div *ngFor="let chat of chats" 
-        (click)="selectChat(chat)" 
-        [ngClass]="{'chat-item': chat !== selectedChat, 'chat-item-selected': chat === selectedChat}">
-        {{ chat.name }}
+      <h3>Mis conversaciones</h3>
+      <div *ngFor="let user of getUsers()" 
+        (click)="selectChat(user)" 
+        [ngClass]="{'chat-item': user !== selectedChat, 'chat-item-selected': user === selectedChat}">
+        {{ user }}
       </div>
     </div>
   
     <div class="chat-window">
+      <h3>Conversación con {{ selectedChat }}</h3>
       <div class="message-list">
-        <div
-          *ngFor="let message of selectedChat?.messages"
-          [ngClass]="{'message-received': !message.isSentByUser, 'message-sent': message.isSentByUser}"
-        >
-          {{ message.content }}
+        <div *ngFor="let message of chats[selectedChat]"
+          [ngClass]="{'message-received': !message.isSentByUser, 'message-sent': message.isSentByUser}">
+          <b>{{ message.chat }} </b>
+          <small>{{ message.fecha | date:'dd/MM/yy HH:mm' }}</small>
         </div>
       </div>
       <div class="message-input">

@@ -27,11 +27,11 @@
       Abrir en el mapa
       <mat-icon>map</mat-icon>
     </button>
-    <button class="map-button" (click)="createChatAndNavigate()">
+    <button class="map-button" (click)="createChatAndNavigate()" *ngIf="!isOwner">
       Contactar con el propietario
       <mat-icon>chat</mat-icon>
     </button>
-    <button class="map-button" (click)="addToFavourites()" *ngIf="!isFavourite">
+    <button class="map-button" (click)="addToFavourites()" *ngIf="!isFavourite && !isOwner">
       Añadir a favoritos
       <mat-icon>favorite</mat-icon>
     </button>

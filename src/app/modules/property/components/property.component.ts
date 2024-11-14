@@ -6,6 +6,9 @@ import { Property } from '../../shared/models/property';
 import { MatDialog } from '@angular/material/dialog';
 import { PropertyMapComponent } from './property-map/property-map.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FirstMessageModalComponent } from '../../shared/components/first-message-modal/first-message-modal.component';
+import { Chat } from '../../shared/models/chat';
+import { ChatController } from '../../chat/controllers/chat.controller';
 
 @Component({
   selector: 'app-property',
@@ -34,6 +37,7 @@ export class PropertyComponent implements OnInit {
   constructor(
     private router: Router, 
     private controller: PropertyController,
+    private chatController: ChatController,
     private location: Location,
     private route: ActivatedRoute,
     private dialog: MatDialog,
@@ -75,8 +79,27 @@ export class PropertyComponent implements OnInit {
   }
 
   createChatAndNavigate() {
-    // Crear el chat con el propietario de la propiedad
-    this.router.navigate(['/chat']);
+    const dialogRef = this.dialog.open(FirstMessageModalComponent, {
+      width: '400px'
+    });
+  
+    dialogRef.afterClosed().subscribe(chat => {
+      if (chat) {
+        const email = localStorage.getItem('email') || '';
+        const message: Chat = {
+          id: Date.now(),
+          chat: chat,
+          fecha: new Date().toISOString(),
+          cliente_email: email,
+          cliente_email2: this.property.propietario_email,
+          isSentByUser: true
+        };
+  
+        this.chatController.sendMessage(message).then(() => {
+          this.router.navigate(['/chat']);
+        });
+      }
+    });
   }
 
   addToFavourites() {
