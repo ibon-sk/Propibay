@@ -20,7 +20,6 @@ export class AuthGuard implements CanActivate {
       if (tokenAge < oneHour) {
         return true;
       } else {
-        // Token has expired
         localStorage.clear();
         this.router.navigate(['/login']);
         return false;

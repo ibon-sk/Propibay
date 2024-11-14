@@ -89,6 +89,10 @@ form {
     margin-bottom: 10px;
     font-weight: bold;
 
+    &:disabled {
+      cursor: not-allowed;
+    }
+
     &:not(:last-child) {
       margin-right: 10px;
     }
@@ -99,10 +103,6 @@ form {
 
       &:hover {
         opacity: 0.9;
-      }
-
-      &:disabled {
-        cursor: not-allowed;
       }
     }
 

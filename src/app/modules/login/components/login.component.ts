@@ -39,8 +39,7 @@ export class LoginComponent {
       }
   }
 
-  onGoogleLogin() {
-  }
+  onGoogleLogin() {}
 
   onClickCreateAccount() {
     this.router.navigate(['/create-account']);
