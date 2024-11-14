@@ -20,8 +20,10 @@ export class HomeComponent implements OnInit {
     this.controller.getProperties().then((properties: Property[]) => {
       this.properties = properties;
       this.filteredProperties = properties;
-    }).catch(() => {
-      console.log('Error getting properties');
+    }).catch((error) => {
+      console.log('Error getting properties', error);
+      this.properties = [];
+      this.filteredProperties = [];
     });
   }
 

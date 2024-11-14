@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { LoginService } from '../services/login.service';
-import { Observable } from 'rxjs';
 import { User } from '../../shared/models/user';
 
 @Injectable({

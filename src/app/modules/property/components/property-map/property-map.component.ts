@@ -10,8 +10,8 @@ import * as L from 'leaflet';
 })
 export class PropertyMapComponent implements AfterViewInit, OnDestroy {
 
-  private map!: L.Map;
-  private icon!: L.Icon;
+  map!: L.Map;
+  icon!: L.Icon;
 
   constructor(
     private http: HttpClient,

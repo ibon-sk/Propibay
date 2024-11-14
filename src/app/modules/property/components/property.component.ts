@@ -32,7 +32,7 @@ export class PropertyComponent implements OnInit {
     habitaciones: 0,
     estado: 1,
     id: 0,
-    propietario_email: '',
+    propietario_email: 'unknown@unknown.com',
     extension: 0,
     tipo_oferta: 1
   };
