@@ -1,13 +1,13 @@
 
-export class PropertyFilter {
-    minPrice: number | undefined;
-    maxPrice: number | undefined;
-    extension: number | undefined;
-    rooms: number | undefined;
-    state: string | undefined;
-    type: number | undefined;
-    offerType: number | undefined;
-    orderByMaxPrice: boolean | undefined;
-    orderByMinPrice: boolean | undefined;
-    orderByFavourites: boolean | undefined;
+export interface PropertyFilter {
+    precioMin?: number,
+    precioMax?: number,
+    extension?: number,
+    nHabitaciones?: number,
+    estado?: number,
+    tipoInmueble?: number,
+    tipoOferta?: number,
+    ordenarPrecioMax: boolean,
+    ordenarPrecioMin: boolean,
+    ordenarFavoritos: boolean
 }

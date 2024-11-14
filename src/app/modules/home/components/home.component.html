@@ -1,8 +1,23 @@
 <div class="header">
-    <mat-icon class="icon">favorite</mat-icon>
-    <h1>Los favoritos de nuestros usuarios</h1>
+    <mat-icon class="icon">house</mat-icon>
+    <h1>Bienvenido a Propibay</h1>
     <div class="search-container">
-        <input matInput placeholder="Buscar oferta" [(ngModel)]="searchQuery" class="search-input" (keydown.enter)="searchOffers()" />
+        <select [(ngModel)]="filters.tipoInmueble" class="property-type-select">
+          <option value="-1">Cualquier inmueble</option>
+          <option value="0">Vivienda</option>
+          <option value="1">Oficina</option>
+          <option value="2">Garaje</option>
+        </select>
+        <select [(ngModel)]="filters.tipoOferta" class="property-type-select">
+          <option value="-1">Cualquier oferta</option>
+          <option value="0">Venta</option>
+          <option value="1">Alquiler</option>
+        </select>
+        <select [(ngModel)]="orderType" class="property-type-select">
+          <option value="-1">Sin ordenar</option>
+          <option value="0">Ordenar por precio DESC</option>
+          <option value="1">Ordenar por precio ASC</option>
+        </select>
         <button class="search-button" (click)="searchOffers()">
           <mat-icon class="icon">search</mat-icon>
         </button>

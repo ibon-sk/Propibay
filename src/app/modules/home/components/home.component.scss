@@ -10,6 +10,7 @@ $border-radius: 5px;
     h1 {
         color: $Propibay-primary;
         margin-left: 10px;
+        margin-right: 40px;
     }
 
     .icon {
@@ -23,11 +24,11 @@ $border-radius: 5px;
         align-items: center;
     
         .search-input {
-          padding: 5px 10px;
+          padding: 10px;
           font-size: 1rem;
           border-radius: $border-radius;
           border: 1px solid #ccc;
-          margin-left: 100px;
+          margin-left: 80px;
           width: 200px;
     
           &:focus {
@@ -35,10 +36,22 @@ $border-radius: 5px;
             outline: none;
           }
         }
+
+        .property-type-select {
+          width: 200px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          margin-left: 10px;
+          border-radius: $border-radius;
+          background-color: white;
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+        }
     }
 
     .search-button {
-        margin-left: 5px;
+        margin-left: 10px;
         background: $Propibay-secondary;
         color: $Propibay-primary;
         border: none;
