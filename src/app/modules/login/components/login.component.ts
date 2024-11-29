@@ -22,21 +22,20 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-      this.loginController.adminLogin(email, password).then((response: any) => {
-        localStorage.setItem('adminToken', response.token);
+      this.loginController.login(email, password).then((response: any) => {
         localStorage.setItem('email', email);
-        this.router.navigate(['/admin']);
-      }).catch(() => {
-        this.loginController.login(email, password).then((response: any) => {
+        localStorage.setItem('tokenCreationTime', new Date().getTime().toString());
+        if (response.esAdmin) { // Cambiado a esAdmin
+          localStorage.setItem('adminToken', response.token);
+          this.router.navigate(['/admin']);
+        } else {
           localStorage.setItem('authToken', response.token);
-          localStorage.setItem('tokenCreationTime', new Date().getTime().toString());
-          localStorage.setItem('email', email);
           this.router.navigate(['/home']);
-        }).catch(() => {
-          this.showLoginError = true;
-        });
+        }
+      }).catch(() => {
+        this.showLoginError = true;
       });
-      }
+    }
   }
 
   onGoogleLogin() {}
