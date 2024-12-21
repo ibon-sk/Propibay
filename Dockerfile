@@ -1,5 +1,5 @@
 # Usar una imagen base de Node.js
-FROM node:14
+FROM node:16
 
 # Establecer el directorio de trabajo
 WORKDIR /usr/src/app
@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Construir la aplicación Angular
-RUN npm run build --prod
+RUN npm run build -- --configuration production
 
 # Exponer el puerto que el servidor escuchará
 EXPOSE 4200
